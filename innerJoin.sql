@@ -93,11 +93,12 @@ select * from servicios;
 select * from productos;
 select * from detalles_orden_servicio;
 select * from orden_servicio;
+select * from informe;
 select * from comprobante;
 select * from historial;
 
 /* Datos insertados */
-delete from comprobante where ID_COMPROBANTE = 3;
+delete from historial where ID_HISTORIAL = 'H3';
 insert into administradores(Nombre,Correo,Contrasena,Telefono)values('Alejo','Alejopxxx@gmail.com','5469871','325586787');
 insert into clientes(Ubicacion,Nombre,TipoDocumento,Correo,Telefono)values('Cundinamarca','Bok','Cedula de ciudadania','Terryxxx@gmail.com','300586787');
 insert into tecnicos(Nombre,Correo,Contrasena,Telefono)values('Santiago','Santiagoxxx@gmail.com','5471256','312425462');
@@ -110,8 +111,95 @@ insert into informe(ID_DETALLES_ORDEN_SERVICIO,ID_ADMINISTRADOR,ID_TECNICOS,Desc
 insert into comprobante(ID_INFORME,ID_CLIENTES,ID_ADMINISTRADOR,Monto,Fecha,Estado_pago)values('3','4','1','5000000','2025-11-05','Pagado');
 insert into historial(ID_ORDEN_SERVICIO,ID_COMPROBANTE,ID_INFORME,ID_TECNICOS,ID_CLIENTES,Descripcion,Fecha_registro)values('3','3','3','3','4','Historial','2025-11-15 17:45:00');
 update clientes
-set ID_CLIENTES = 1
-where ID_CLIENTES = 7
+set ID_CLIENTES = '01-Bok'
+where ID_CLIENTES = 1;
+
+ALTER TABLE comprobante DROP FOREIGN KEY comprobante_ibfk_1;
+ALTER TABLE comprobante DROP FOREIGN KEY comprobante_ibfk_2;
+ALTER TABLE comprobante DROP FOREIGN KEY comprobante_ibfk_3;
+
+ALTER TABLE detalles_orden_servicio DROP FOREIGN KEY detalles_orden_servicio_ibfk_1;
+ALTER TABLE detalles_orden_servicio DROP FOREIGN KEY detalles_orden_servicio_ibfk_2;
+ALTER TABLE detalles_orden_servicio DROP FOREIGN KEY detalles_orden_servicio_ibfk_3;
+
+ALTER TABLE historial DROP FOREIGN KEY historial_ibfk_1;
+ALTER TABLE historial DROP FOREIGN KEY historial_ibfk_2;
+
+ALTER TABLE informe DROP FOREIGN KEY informe_ibfk_1;
+ALTER TABLE informe DROP FOREIGN KEY informe_ibfk_2;
+ALTER TABLE informe DROP FOREIGN KEY informe_ibfk_3;
+
+ALTER TABLE motos DROP FOREIGN KEY motos_ibfk_1;
+
+ALTER TABLE orden_servicio DROP FOREIGN KEY orden_servicio_ibfk_1;
+ALTER TABLE orden_servicio DROP FOREIGN KEY orden_servicio_ibfk_2;
+ALTER TABLE orden_servicio DROP FOREIGN KEY orden_servicio_ibfk_3;
+ALTER TABLE orden_servicio DROP FOREIGN KEY orden_servicio_ibfk_4;
+
+ALTER TABLE administradores MODIFY ID_ADMINISTRADOR VARCHAR(20) NOT NULL;
+ALTER TABLE clientes MODIFY ID_CLIENTES VARCHAR(20) NOT NULL;
+ALTER TABLE tecnicos MODIFY ID_TECNICOS VARCHAR(20) NOT NULL;
+ALTER TABLE motos MODIFY ID_MOTOS VARCHAR(20) NOT NULL;
+ALTER TABLE productos MODIFY ID_PRODUCTOS VARCHAR(20) NOT NULL;
+ALTER TABLE servicios MODIFY ID_SERVICIOS VARCHAR(20) NOT NULL;
+ALTER TABLE orden_servicio MODIFY ID_ORDEN_SERVICIO VARCHAR(20) NOT NULL;
+ALTER TABLE detalles_orden_servicio MODIFY ID_DETALLES_ORDEN_SERVICIO VARCHAR(20) NOT NULL;
+ALTER TABLE informe MODIFY ID_INFORME VARCHAR(20) NOT NULL;
+ALTER TABLE comprobante MODIFY ID_COMPROBANTE VARCHAR(20) NOT NULL;
+ALTER TABLE historial MODIFY ID_HISTORIAL VARCHAR(20) NOT NULL;
+
+ALTER TABLE comprobante MODIFY ID_INFORME VARCHAR(20);
+ALTER TABLE comprobante MODIFY ID_CLIENTES VARCHAR(20);
+ALTER TABLE comprobante MODIFY ID_ADMINISTRADOR VARCHAR(20);
+
+ALTER TABLE detalles_orden_servicio MODIFY ID_ORDEN_SERVICIO VARCHAR(20);
+ALTER TABLE detalles_orden_servicio MODIFY ID_SERVICIOS VARCHAR(20);
+ALTER TABLE detalles_orden_servicio MODIFY ID_PRODUCTOS VARCHAR(20);
+
+ALTER TABLE historial MODIFY ID_ORDEN_SERVICIO VARCHAR(20);
+ALTER TABLE historial MODIFY ID_COMPROBANTE VARCHAR(20);
+
+ALTER TABLE informe MODIFY ID_DETALLES_ORDEN_SERVICIO VARCHAR(20);
+ALTER TABLE informe MODIFY ID_ADMINISTRADOR VARCHAR(20);
+ALTER TABLE informe MODIFY ID_TECNICOS VARCHAR(20);
+
+ALTER TABLE motos MODIFY ID_CLIENTES VARCHAR(20);
+
+ALTER TABLE orden_servicio MODIFY ID_CLIENTES VARCHAR(20);
+ALTER TABLE orden_servicio MODIFY ID_ADMINISTRADOR VARCHAR(20);
+ALTER TABLE orden_servicio MODIFY ID_TECNICOS VARCHAR(20);
+ALTER TABLE orden_servicio MODIFY ID_MOTOS VARCHAR(20);
+
+
+ALTER TABLE comprobante 
+ADD FOREIGN KEY (ID_INFORME) REFERENCES detalles_orden_servicio(ID_DETALLES_ORDEN_SERVICIO),
+ADD FOREIGN KEY (ID_CLIENTES) REFERENCES clientes(ID_CLIENTES),
+ADD FOREIGN KEY (ID_ADMINISTRADOR) REFERENCES administradores(ID_ADMINISTRADOR);
+
+ALTER TABLE detalles_orden_servicio 
+ADD FOREIGN KEY (ID_ORDEN_SERVICIO) REFERENCES orden_servicio(ID_ORDEN_SERVICIO),
+ADD FOREIGN KEY (ID_SERVICIOS) REFERENCES servicios(ID_SERVICIOS),
+ADD FOREIGN KEY (ID_PRODUCTOS) REFERENCES productos(ID_PRODUCTOS);
+
+ALTER TABLE historial 
+ADD FOREIGN KEY (ID_ORDEN_SERVICIO) REFERENCES orden_servicio(ID_ORDEN_SERVICIO),
+ADD FOREIGN KEY (ID_COMPROBANTE) REFERENCES comprobante(ID_COMPROBANTE);
+
+ALTER TABLE informe 
+ADD FOREIGN KEY (ID_DETALLES_ORDEN_SERVICIO) REFERENCES detalles_orden_servicio(ID_DETALLES_ORDEN_SERVICIO),
+ADD FOREIGN KEY (ID_ADMINISTRADOR) REFERENCES administradores(ID_ADMINISTRADOR),
+ADD FOREIGN KEY (ID_TECNICOS) REFERENCES tecnicos(ID_TECNICOS);
+
+ALTER TABLE motos 
+ADD FOREIGN KEY (ID_CLIENTES) REFERENCES clientes(ID_CLIENTES);
+
+ALTER TABLE orden_servicio 
+ADD FOREIGN KEY (ID_CLIENTES) REFERENCES clientes(ID_CLIENTES),
+ADD FOREIGN KEY (ID_ADMINISTRADOR) REFERENCES administradores(ID_ADMINISTRADOR),
+ADD FOREIGN KEY (ID_TECNICOS) REFERENCES tecnicos(ID_TECNICOS),
+ADD FOREIGN KEY (ID_MOTOS) REFERENCES motos(ID_MOTOS);
+
+
 
 
 
