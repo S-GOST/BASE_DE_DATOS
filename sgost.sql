@@ -38,7 +38,7 @@ CREATE TABLE `administradores` (
 
 LOCK TABLES `administradores` WRITE;
 /*!40000 ALTER TABLE `administradores` DISABLE KEYS */;
-INSERT INTO `administradores` VALUES ('ADM1','JuanP','Juanpxxx@gmail.com','5698745','322546987'),('ADM2','Alejo','Alejopxxx@gmail.com','5469871','325586787');
+INSERT INTO `administradores` VALUES ('ADM1','JuanP','Juanpxxx@gmail.com','Cedula de Ciudadania','322546987'),('ADM2','Alejo','Alejopxxx@gmail.com','Pasaporte','325586785');
 /*!40000 ALTER TABLE `administradores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -66,7 +66,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-INSERT INTO `clientes` VALUES ('CLI1','Cundinamarca','Bok','Cedula de ciudadania','Terryxxx@gmail.com','300586787'),('CLI2','Bogota','Rosa','Cedula de Ciudadania','Rosaxxx@gmail.com','311202547'),('CLI3','Cundinamarca','Teodoro','Pasaporte','Teodoroxxx@gmail.com','311256478'),('CLI4','Bogota','Terry','Cedula de Ciudadania','Terryxxx@gmail.com','311785141');
+INSERT INTO `clientes` VALUES ('CLI1','Bogota','Bok','Nit','Bokxxx@gmail.com','3002125478'),('CLI2','Bogota','Rosa','Cedula de Ciudadania','Rosaxxx@gmail.com','311202547'),('CLI3','Cundinamarca','Teodoro','Pasaporte','Teodoroxxx@gmail.com','312256478'),('CLI4','Bogota','Terry','Cedula de Ciudadania','Terryxxx@gmail.com','300785141');
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -135,7 +135,7 @@ CREATE TABLE `detalles_orden_servicio` (
 
 LOCK TABLES `detalles_orden_servicio` WRITE;
 /*!40000 ALTER TABLE `detalles_orden_servicio` DISABLE KEYS */;
-INSERT INTO `detalles_orden_servicio` VALUES ('DET1','ORD1','SER1','PRO3','15','Finalizada',500000.00),('DET2','ORD2','SER2','PRO3','15','Finalizada',400000.00);
+INSERT INTO `detalles_orden_servicio` VALUES ('DET1','ORD1','SER1','PRO2','15','En espera',180.00),('DET2','ORD2','SER2','PRO3','14','Finalizada',200.00),('DET3','ORD3','SER4','PRO1','30','En espera',50.00);
 /*!40000 ALTER TABLE `detalles_orden_servicio` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -200,7 +200,7 @@ CREATE TABLE `informe` (
 
 LOCK TABLES `informe` WRITE;
 /*!40000 ALTER TABLE `informe` DISABLE KEYS */;
-INSERT INTO `informe` VALUES ('INF1','DET1','ADM1','TEC2','Lista para entrega','2025-11-11 00:00:00','Pendiente'),('INF2','DET2','ADM2','TEC1','En espera','2025-11-20 00:00:00','Entregado'),('INF3','DET2','ADM2','TEC3','Informe orden tres','2025-11-13 13:14:00','Finalizada');
+INSERT INTO `informe` VALUES ('INF1','DET1','ADM1','TEC1','En espera','2025-11-13 13:14:00','En espera'),('INF2','DET2','ADM2','TEC2','Lista para entrega','2025-11-13 13:14:00','En espera'),('INF3','DET3','ADM1','TEC1','Informe orden tres','2025-11-13 13:15:00','Finalizada');
 /*!40000 ALTER TABLE `informe` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -230,7 +230,7 @@ CREATE TABLE `motos` (
 
 LOCK TABLES `motos` WRITE;
 /*!40000 ALTER TABLE `motos` DISABLE KEYS */;
-INSERT INTO `motos` VALUES ('M1','CLI2','BGT654','200','DUKE','700000.00'),('M2','CLI3','AKT654','250','DUKE','800000.00'),('M3','CLI4','LMT564','390','DUKE','900000KM');
+INSERT INTO `motos` VALUES ('M1','CLI2','BGT654','250','DUKE','70.000'),('M2','CLI3','AKT654','250','DUKE','80.000'),('M3','CLI4','LMT564','390','DUKE','90.000'),('M4','CLI1','SER569','250','DUKE','38.000');
 /*!40000 ALTER TABLE `motos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -269,7 +269,7 @@ CREATE TABLE `orden_servicio` (
 
 LOCK TABLES `orden_servicio` WRITE;
 /*!40000 ALTER TABLE `orden_servicio` DISABLE KEYS */;
-INSERT INTO `orden_servicio` VALUES ('ORD1','CLI2','ADM1','TEC1','M1','2025-11-08 13:42:00','2025-11-12 15:20:00','2025-11-15 13:10:00','Pendiente'),('ORD2','CLI3','ADM2','TEC2','M2','2025-11-02 14:42:00','2025-11-05 15:20:00','2025-11-15 13:10:00','Finalizada'),('ORD3','CLI4','ADM2','TEC3','M3','2025-11-10 13:14:00','2025-11-13 13:14:00','2025-11-20 13:14:00','Finalizada');
+INSERT INTO `orden_servicio` VALUES ('ORD1','CLI1','ADM1','TEC3','M4','2025-11-10 13:14:00','2025-11-13 13:14:00','2025-11-20 13:14:00','En espera'),('ORD2','CLI2','ADM1','TEC2','M2','2025-11-10 13:14:00','2025-11-13 13:14:00','2025-11-20 13:14:00','Finalizada'),('ORD3','CLI3','ADM2','TEC3','M3','2025-11-10 13:14:00','2025-11-13 13:14:00','2025-11-20 13:14:00','Finalizada');
 /*!40000 ALTER TABLE `orden_servicio` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -299,7 +299,7 @@ CREATE TABLE `productos` (
 
 LOCK TABLES `productos` WRITE;
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
-INSERT INTO `productos` VALUES ('PRO1','Lubricantes y Refrigerantes','Motorex','Aceite','30',120000.00,8,'Disponibles'),('PRO2','Accesorios Mecanicos','Rombo','Cadena','30',180000.00,5,'Disponibles'),('PRO3','Accesorios Electricos','Minda','Direccionales','10',150000.00,15,'Disponibles');
+INSERT INTO `productos` VALUES ('PRO1','Lubricantes y Refrigerantes','Motorex','Aceite','30',120.00,8,'Disponibles'),('PRO2','Accesorios Mecanicos','Rombo','Cadena','30',180.00,5,'Disponibles'),('PRO3','Accesorios Electricos','Minda','Direccionales','10',150.00,15,'Disponibles');
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -316,7 +316,7 @@ CREATE TABLE `servicios` (
   `Categoria` varchar(100) NOT NULL,
   `Garantia` varchar(100) NOT NULL,
   `Estado` varchar(20) NOT NULL,
-  `Precio` decimal(10,2) NOT NULL,
+  `Precio` varchar(20) NOT NULL,
   PRIMARY KEY (`ID_SERVICIOS`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -327,7 +327,7 @@ CREATE TABLE `servicios` (
 
 LOCK TABLES `servicios` WRITE;
 /*!40000 ALTER TABLE `servicios` DISABLE KEYS */;
-INSERT INTO `servicios` VALUES ('SER1','Mantenimineto preventivo','Mantenimientos','30','Disponible',6000000.00),('SER2','Reparacion por daños','Reparaciones','-','Disponible',0.00),('SER3','Instalaciones de accesorios','Instalaciones','14','Disponible',300000.00),('SER4','Diagnosticos motor','Diagnosticos','-','Disponible',600000.00);
+INSERT INTO `servicios` VALUES ('SER1','Mantenimiento preventivo','Mantenimientos','30','Disponible','180.000'),('SER2','Reparacion por daños','Reparaciones','30','Disponible','200.000'),('SER3','Instalaciones de accesorios','Instalaciones','14','Disponible','300.000'),('SER4','Diagnosticos motor','Diagnosticos','10','Disponible','600.000');
 /*!40000 ALTER TABLE `servicios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -354,7 +354,7 @@ CREATE TABLE `tecnicos` (
 
 LOCK TABLES `tecnicos` WRITE;
 /*!40000 ALTER TABLE `tecnicos` DISABLE KEYS */;
-INSERT INTO `tecnicos` VALUES ('TEC1','Camilo','52145698','Camiloxxx@gmail.com','315487962'),('TEC2','Alejandro','5463215','Alejandroxxx@gmail.com','311486562'),('TEC3','Santiago','5471256','Santiagoxxx@gmail.com','312425462');
+INSERT INTO `tecnicos` VALUES ('TEC1','Camilo','Cedula de Ciudadania','Camiloxxx@gmail.com','315487962'),('TEC2','Alejandro','Cedula de ciudadania','Alejandroxxx@gmail.com','311486562'),('TEC3','Santiago','Tarjeta de Identidad','Santiagoxxx@gmail.com','3112012365');
 /*!40000 ALTER TABLE `tecnicos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -367,4 +367,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-11-16 16:12:16
+-- Dump completed on 2025-11-18 18:52:06

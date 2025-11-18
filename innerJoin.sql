@@ -98,7 +98,7 @@ select * from comprobante;
 select * from historial;
 
 /* Datos insertados */
-delete from historial where ID_HISTORIAL = 'H3';
+delete from servicios where ID_SERVICIOS = 'SER1';
 insert into administradores(Nombre,Correo,Contrasena,Telefono)values('Alejo','Alejopxxx@gmail.com','5469871','325586787');
 insert into clientes(Ubicacion,Nombre,TipoDocumento,Correo,Telefono)values('Cundinamarca','Bok','Cedula de ciudadania','Terryxxx@gmail.com','300586787');
 insert into tecnicos(Nombre,Correo,Contrasena,Telefono)values('Santiago','Santiagoxxx@gmail.com','5471256','312425462');
@@ -110,9 +110,9 @@ insert into detalles_orden_servicio(ID_ORDEN_SERVICIO,ID_SERVICIOS,ID_PRODUCTOS,
 insert into informe(ID_DETALLES_ORDEN_SERVICIO,ID_ADMINISTRADOR,ID_TECNICOS,Descripcion,Fecha,Estado)values('3','1','3','En espera de repuestos','2025-11-25','Pendiente');
 insert into comprobante(ID_INFORME,ID_CLIENTES,ID_ADMINISTRADOR,Monto,Fecha,Estado_pago)values('3','4','1','5000000','2025-11-05','Pagado');
 insert into historial(ID_ORDEN_SERVICIO,ID_COMPROBANTE,ID_INFORME,ID_TECNICOS,ID_CLIENTES,Descripcion,Fecha_registro)values('3','3','3','3','4','Historial','2025-11-15 17:45:00');
-update clientes
-set ID_CLIENTES = '01-Bok'
-where ID_CLIENTES = 1;
+update tecnicos
+set TipoDocumento = 'Cedula de ciudadania'
+where ID_TECNICOS = 'TEC3';
 
 ALTER TABLE comprobante DROP FOREIGN KEY comprobante_ibfk_1;
 ALTER TABLE comprobante DROP FOREIGN KEY comprobante_ibfk_2;
