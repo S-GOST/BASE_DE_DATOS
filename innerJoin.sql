@@ -98,7 +98,7 @@ select * from comprobante;
 select * from historial;
 
 /* Datos insertados */
-delete from servicios where ID_SERVICIOS = 'SER1';
+delete from comprobante where ID_COMPROBANTE = 'COM3';
 insert into administradores(Nombre,Correo,Contrasena,Telefono)values('Alejo','Alejopxxx@gmail.com','5469871','325586787');
 insert into clientes(Ubicacion,Nombre,TipoDocumento,Correo,Telefono)values('Cundinamarca','Bok','Cedula de ciudadania','Terryxxx@gmail.com','300586787');
 insert into tecnicos(Nombre,Correo,Contrasena,Telefono)values('Santiago','Santiagoxxx@gmail.com','5471256','312425462');

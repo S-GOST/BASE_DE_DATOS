@@ -1,3 +1,5 @@
+create database sgost;
+use sgost;
 -- MySQL dump 10.13  Distrib 8.0.43, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: sgost
@@ -150,13 +152,19 @@ CREATE TABLE `historial` (
   `ID_HISTORIAL` varchar(20) NOT NULL,
   `ID_ORDEN_SERVICIO` varchar(20) DEFAULT NULL,
   `ID_COMPROBANTE` varchar(20) DEFAULT NULL,
+  `ID_INFORME` varchar(20) DEFAULT NULL,
+  `ID_TECNICOS` varchar(20) DEFAULT NULL,
+  `ID_CLIENTES` varchar(20) DEFAULT NULL,
   `Descripcion` varchar(200) DEFAULT NULL,
   `Fecha_registro` datetime NOT NULL,
   PRIMARY KEY (`ID_HISTORIAL`),
   KEY `ID_ORDEN_SERVICIO` (`ID_ORDEN_SERVICIO`),
   KEY `ID_COMPROBANTE` (`ID_COMPROBANTE`),
   CONSTRAINT `historial_ibfk_1` FOREIGN KEY (`ID_ORDEN_SERVICIO`) REFERENCES `orden_servicio` (`ID_ORDEN_SERVICIO`),
-  CONSTRAINT `historial_ibfk_2` FOREIGN KEY (`ID_COMPROBANTE`) REFERENCES `comprobante` (`ID_COMPROBANTE`)
+  CONSTRAINT `historial_ibfk_2` FOREIGN KEY (`ID_COMPROBANTE`) REFERENCES `comprobante` (`ID_COMPROBANTE`),
+  CONSTRAINT `historial_ibfk_3` FOREIGN KEY (`ID_INFORME`) REFERENCES `informe` (`ID_INFORME`),
+  CONSTRAINT `historial_ibfk_4` FOREIGN KEY (`ID_TECNICOS`) REFERENCES `tecnicos` (`ID_TECNICOS`),
+  CONSTRAINT `historial_ibfk_5` FOREIGN KEY (`ID_CLIENTES`) REFERENCES `clientes` (`ID_CLIENTES`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
