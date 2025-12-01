@@ -85,6 +85,11 @@ where Estado = 'Lista para entrega';
 
 /* datos insertados nuevanmente */
 
+ALTER TABLE administradores
+ADD COLUMN usuario VARCHAR(100) UNIQUE AFTER Nombre,
+ADD COLUMN contrasena VARCHAR(255) AFTER usuario;
+
+
 select * from administradores;
 select * from clientes;
 select * from tecnicos;
@@ -110,9 +115,9 @@ insert into detalles_orden_servicio(ID_ORDEN_SERVICIO,ID_SERVICIOS,ID_PRODUCTOS,
 insert into informe(ID_DETALLES_ORDEN_SERVICIO,ID_ADMINISTRADOR,ID_TECNICOS,Descripcion,Fecha,Estado)values('3','1','3','En espera de repuestos','2025-11-25','Pendiente');
 insert into comprobante(ID_INFORME,ID_CLIENTES,ID_ADMINISTRADOR,Monto,Fecha,Estado_pago)values('3','4','1','5000000','2025-11-05','Pagado');
 insert into historial(ID_ORDEN_SERVICIO,ID_COMPROBANTE,ID_INFORME,ID_TECNICOS,ID_CLIENTES,Descripcion,Fecha_registro)values('3','3','3','3','4','Historial','2025-11-15 17:45:00');
-update tecnicos
-set TipoDocumento = 'Cedula de ciudadania'
-where ID_TECNICOS = 'TEC3';
+update administradores
+set contrasena = '123456'
+where ID_ADMINISTRADOR = 'ADM2';
 
 ALTER TABLE comprobante DROP FOREIGN KEY comprobante_ibfk_1;
 ALTER TABLE comprobante DROP FOREIGN KEY comprobante_ibfk_2;
