@@ -1,5 +1,3 @@
-create database sgost;
-use sgost;
 -- MySQL dump 10.13  Distrib 8.0.43, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: sgost
@@ -27,10 +25,13 @@ DROP TABLE IF EXISTS `administradores`;
 CREATE TABLE `administradores` (
   `ID_ADMINISTRADOR` varchar(20) NOT NULL,
   `Nombre` varchar(100) NOT NULL,
+  `usuario` varchar(100) DEFAULT NULL,
+  `contrasena` varchar(255) DEFAULT NULL,
   `Correo` varchar(100) NOT NULL,
   `TipoDocumento` varchar(100) NOT NULL,
   `Telefono` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`ID_ADMINISTRADOR`)
+  PRIMARY KEY (`ID_ADMINISTRADOR`),
+  UNIQUE KEY `usuario` (`usuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -40,7 +41,7 @@ CREATE TABLE `administradores` (
 
 LOCK TABLES `administradores` WRITE;
 /*!40000 ALTER TABLE `administradores` DISABLE KEYS */;
-INSERT INTO `administradores` VALUES ('ADM1','JuanP','Juanpxxx@gmail.com','Cedula de Ciudadania','322546987'),('ADM2','Alejo','Alejopxxx@gmail.com','Pasaporte','325586785');
+INSERT INTO `administradores` VALUES ('ADM1','JuanP','admi1','$2y$12$nDYUThk.eATWvBATzZmr3.Mk5B3pddtohoLpFyVm21QrPux4T75MS','Juanpxxx@gmail.com','Cedula de Ciudadania','322546987'),('ADM2','Alejo','admi2','$2y$12$H8qe.WjD1ERPsxb45ID.k.6xppKmULdUOTnp4LIZmB9z0DEYDXgyG','Alejopxxx@gmail.com','Pasaporte','325586785');
 /*!40000 ALTER TABLE `administradores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -160,6 +161,9 @@ CREATE TABLE `historial` (
   PRIMARY KEY (`ID_HISTORIAL`),
   KEY `ID_ORDEN_SERVICIO` (`ID_ORDEN_SERVICIO`),
   KEY `ID_COMPROBANTE` (`ID_COMPROBANTE`),
+  KEY `historial_ibfk_3` (`ID_INFORME`),
+  KEY `historial_ibfk_4` (`ID_TECNICOS`),
+  KEY `historial_ibfk_5` (`ID_CLIENTES`),
   CONSTRAINT `historial_ibfk_1` FOREIGN KEY (`ID_ORDEN_SERVICIO`) REFERENCES `orden_servicio` (`ID_ORDEN_SERVICIO`),
   CONSTRAINT `historial_ibfk_2` FOREIGN KEY (`ID_COMPROBANTE`) REFERENCES `comprobante` (`ID_COMPROBANTE`),
   CONSTRAINT `historial_ibfk_3` FOREIGN KEY (`ID_INFORME`) REFERENCES `informe` (`ID_INFORME`),
@@ -349,10 +353,13 @@ DROP TABLE IF EXISTS `tecnicos`;
 CREATE TABLE `tecnicos` (
   `ID_TECNICOS` varchar(20) NOT NULL,
   `Nombre` varchar(100) NOT NULL,
+  `usuario` varchar(100) DEFAULT NULL,
+  `contrasena` varchar(255) DEFAULT NULL,
   `TipoDocumento` varchar(100) NOT NULL,
   `Correo` varchar(100) NOT NULL,
   `Telefono` varchar(20) NOT NULL,
-  PRIMARY KEY (`ID_TECNICOS`)
+  PRIMARY KEY (`ID_TECNICOS`),
+  UNIQUE KEY `usuario` (`usuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -362,7 +369,7 @@ CREATE TABLE `tecnicos` (
 
 LOCK TABLES `tecnicos` WRITE;
 /*!40000 ALTER TABLE `tecnicos` DISABLE KEYS */;
-INSERT INTO `tecnicos` VALUES ('TEC1','Camilo','Cedula de Ciudadania','Camiloxxx@gmail.com','315487962'),('TEC2','Alejandro','Cedula de ciudadania','Alejandroxxx@gmail.com','311486562'),('TEC3','Santiago','Tarjeta de Identidad','Santiagoxxx@gmail.com','3112012365');
+INSERT INTO `tecnicos` VALUES ('TEC1','Camilo','tec1','$2y$12$X9SuJUbs.LVoixcdiDywKOD1pYlgifqBTlHdQnjY2LMypqwz8bUea','Cedula de Ciudadania','Camiloxxx@gmail.com','315487962'),('TEC2','Alejandro','tec2','$2y$12$D/H/WNYOtLUe9Nudbj7WeOXEoVdFqE.5xzI6ltn3P5/Gl8StYT8J.','Cedula de ciudadania','Alejandroxxx@gmail.com','311486562'),('TEC3','Santiago','tec3','$2y$12$SWAG1jyIlayXCP8p0scODOGJK46CUGtvc5RYDYus12boGBo6DrN/a','Tarjeta de Identidad','Santiagoxxx@gmail.com','3112012365');
 /*!40000 ALTER TABLE `tecnicos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -375,4 +382,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-11-18 18:52:06
+-- Dump completed on 2025-12-03 13:45:03
