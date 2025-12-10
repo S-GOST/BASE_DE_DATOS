@@ -117,7 +117,7 @@ insert into comprobante(ID_INFORME,ID_CLIENTES,ID_ADMINISTRADOR,Monto,Fecha,Esta
 insert into historial(ID_ORDEN_SERVICIO,ID_COMPROBANTE,ID_INFORME,ID_TECNICOS,ID_CLIENTES,Descripcion,Fecha_registro)values('3','3','3','3','4','Historial','2025-11-15 17:45:00');
 update clientes
 set contrasena = '8063'
-where ID_CLIENTES = 'CLI1';
+where ID_CLIENTES = 'CLI4';
 
 ALTER TABLE comprobante DROP FOREIGN KEY comprobante_ibfk_1;
 ALTER TABLE comprobante DROP FOREIGN KEY comprobante_ibfk_2;

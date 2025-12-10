@@ -1,5 +1,3 @@
-create database sgost;
-use sgost;
 -- MySQL dump 10.13  Distrib 8.0.43, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: sgost
@@ -58,10 +56,13 @@ CREATE TABLE `clientes` (
   `ID_CLIENTES` varchar(20) NOT NULL,
   `Ubicacion` varchar(40) DEFAULT NULL,
   `Nombre` varchar(100) NOT NULL,
+  `usuario` varchar(100) DEFAULT NULL,
+  `contrasena` varchar(255) DEFAULT NULL,
   `TipoDocumento` varchar(45) NOT NULL,
   `Correo` varchar(100) NOT NULL,
   `Telefono` varchar(20) NOT NULL,
-  PRIMARY KEY (`ID_CLIENTES`)
+  PRIMARY KEY (`ID_CLIENTES`),
+  UNIQUE KEY `usuario` (`usuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -71,7 +72,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-INSERT INTO `clientes` VALUES ('CLI1','Bogota','Bok','Nit','Bokxxx@gmail.com','3002125478'),('CLI2','Bogota','Rosa','Cedula de Ciudadania','Rosaxxx@gmail.com','311202547'),('CLI3','Cundinamarca','Teodoro','Pasaporte','Teodoroxxx@gmail.com','312256478'),('CLI4','Bogota','Terry','Cedula de Ciudadania','Terryxxx@gmail.com','300785141');
+INSERT INTO `clientes` VALUES ('CLI1','Bogota','Bok','bok1','$2y$12$Hkl5r0hZL/RMXTzGDPyW5OUhPxzOYT6ewkLASmAjEze/BDcK3KX9q','Nit','Bokxxx@gmail.com','3002125478'),('CLI2','Bogota','Rosa','Rosa2','$2y$12$lyMRPA3M4uwL4lDOGEv8I.ldboFUjAku2ck3EjR2zFtIDuc5wJbpy','Cedula de Ciudadania','Rosaxxx@gmail.com','311202547'),('CLI3','Cundinamarca','Teodoro','teodoro3','$2y$12$dLBGpiisUAUtvPCvEtnacuasCNpl4md41RMwt5T3V2zhg5ka4IvS.','Pasaporte','Teodoroxxx@gmail.com','312256478'),('CLI4','Bogota','Terry','terry4','$2y$12$3tIkXeWRD/5jAZ/gsPGudOQwEdx5fNUmy3Toqavsf/Lhbb7qUI2Du','Cedula de Ciudadania','Terryxxx@gmail.com','300785141');
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -384,4 +385,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-12-04 21:13:54
+-- Dump completed on 2025-12-10 13:58:41
