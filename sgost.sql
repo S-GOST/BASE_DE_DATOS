@@ -372,7 +372,7 @@ CREATE TABLE `tecnicos` (
 
 LOCK TABLES `tecnicos` WRITE;
 /*!40000 ALTER TABLE `tecnicos` DISABLE KEYS */;
-INSERT INTO `tecnicos` VALUES ('TEC1','Camilo','tec1','$2y$12$X9SuJUbs.LVoixcdiDywKOD1pYlgifqBTlHdQnjY2LMypqwz8bUea','Cedula de Ciudadania','Camiloxxx@gmail.com','315487962'),('TEC2','Alejandro','tec2','$2y$12$D/H/WNYOtLUe9Nudbj7WeOXEoVdFqE.5xzI6ltn3P5/Gl8StYT8J.','Cedula de ciudadania','Alejandroxxx@gmail.com','311486562'),('TEC3','Santiago','tec3','$2y$12$SWAG1jyIlayXCP8p0scODOGJK46CUGtvc5RYDYus12boGBo6DrN/a','Tarjeta de Identidad','Santiagoxxx@gmail.com','3112012365');
+INSERT INTO `tecnicos` VALUES ('TEC1','Camilo','tec1','$2y$12$X9SuJUbs.LVoixcdiDywKOD1pYlgifqBTlHdQnjY2LMypqwz8bUea','Cedula de Ciudadania','Camiloxxx@gmail.com','315487962'),('TEC2','Alejandro','tec2','$2y$12$D/H/WNYOtLUe9Nudbj7WeOXEoVdFqE.5xzI6ltn3P5/Gl8StYT8J.','Cedula de Ciudadania','Alejandroxxx@gmail.com','311486565'),('TEC3','Santiago','tec3','$2y$12$SWAG1jyIlayXCP8p0scODOGJK46CUGtvc5RYDYus12boGBo6DrN/a','Cedula de Ciudadania','Santiagoxxx@gmail.com','311201239');
 /*!40000 ALTER TABLE `tecnicos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -385,4 +385,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-12-11 13:58:35
+-- Dump completed on 2025-12-13 16:31:38
