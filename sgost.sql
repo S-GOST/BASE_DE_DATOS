@@ -85,9 +85,9 @@ DROP TABLE IF EXISTS `comprobante`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `comprobante` (
   `ID_COMPROBANTE` varchar(20) NOT NULL,
-  `ID_INFORME` varchar(20) DEFAULT NULL,
-  `ID_CLIENTES` varchar(20) DEFAULT NULL,
-  `ID_ADMINISTRADOR` varchar(20) DEFAULT NULL,
+  `ID_INFORME` varchar(20) NOT NULL,
+  `ID_CLIENTES` varchar(20) NOT NULL,
+  `ID_ADMINISTRADOR` varchar(20) NOT NULL,
   `Monto` varchar(100) NOT NULL,
   `Fecha` datetime NOT NULL,
   `Estado_pago` varchar(20) NOT NULL,
@@ -119,9 +119,9 @@ DROP TABLE IF EXISTS `detalles_orden_servicio`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `detalles_orden_servicio` (
   `ID_DETALLES_ORDEN_SERVICIO` varchar(20) NOT NULL,
-  `ID_ORDEN_SERVICIO` varchar(20) DEFAULT NULL,
-  `ID_SERVICIOS` varchar(20) DEFAULT NULL,
-  `ID_PRODUCTOS` varchar(20) DEFAULT NULL,
+  `ID_ORDEN_SERVICIO` varchar(20) NOT NULL,
+  `ID_SERVICIOS` varchar(20) NOT NULL,
+  `ID_PRODUCTOS` varchar(20) NOT NULL,
   `Garantia` varchar(100) NOT NULL,
   `Estado` varchar(20) NOT NULL,
   `Precio` decimal(10,2) NOT NULL,
@@ -154,12 +154,12 @@ DROP TABLE IF EXISTS `historial`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `historial` (
   `ID_HISTORIAL` varchar(20) NOT NULL,
-  `ID_ORDEN_SERVICIO` varchar(20) DEFAULT NULL,
-  `ID_COMPROBANTE` varchar(20) DEFAULT NULL,
-  `ID_INFORME` varchar(20) DEFAULT NULL,
-  `ID_TECNICOS` varchar(20) DEFAULT NULL,
-  `ID_CLIENTES` varchar(20) DEFAULT NULL,
-  `Descripcion` varchar(200) DEFAULT NULL,
+  `ID_ORDEN_SERVICIO` varchar(20) NOT NULL,
+  `ID_COMPROBANTE` varchar(20) NOT NULL,
+  `ID_INFORME` varchar(20) NOT NULL,
+  `ID_TECNICOS` varchar(20) NOT NULL,
+  `ID_CLIENTES` varchar(20) NOT NULL,
+  `Descripcion` varchar(200) NOT NULL,
   `Fecha_registro` datetime NOT NULL,
   PRIMARY KEY (`ID_HISTORIAL`),
   KEY `ID_ORDEN_SERVICIO` (`ID_ORDEN_SERVICIO`),
@@ -193,9 +193,9 @@ DROP TABLE IF EXISTS `informe`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `informe` (
   `ID_INFORME` varchar(20) NOT NULL,
-  `ID_DETALLES_ORDEN_SERVICIO` varchar(20) DEFAULT NULL,
-  `ID_ADMINISTRADOR` varchar(20) DEFAULT NULL,
-  `ID_TECNICOS` varchar(20) DEFAULT NULL,
+  `ID_DETALLES_ORDEN_SERVICIO` varchar(20) NOT NULL,
+  `ID_ADMINISTRADOR` varchar(20) NOT NULL,
+  `ID_TECNICOS` varchar(20) NOT NULL,
   `Descripcion` varchar(200) NOT NULL,
   `Fecha` datetime NOT NULL,
   `Estado` varchar(20) NOT NULL,
@@ -228,7 +228,7 @@ DROP TABLE IF EXISTS `motos`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `motos` (
   `ID_MOTOS` varchar(20) NOT NULL,
-  `ID_CLIENTES` varchar(20) DEFAULT NULL,
+  `ID_CLIENTES` varchar(20) NOT NULL,
   `Placa` varchar(20) NOT NULL,
   `Modelo` varchar(100) NOT NULL,
   `Marca` varchar(100) NOT NULL,
@@ -245,7 +245,7 @@ CREATE TABLE `motos` (
 
 LOCK TABLES `motos` WRITE;
 /*!40000 ALTER TABLE `motos` DISABLE KEYS */;
-INSERT INTO `motos` VALUES ('M1','CLI2','BGT654','250','DUKE','70.000'),('M2','CLI3','AKT654','250','DUKE','80.000'),('M3','CLI4','LMT564','390','DUKE','90.000'),('M4','CLI1','SER569','250','DUKE','38.000');
+INSERT INTO `motos` VALUES ('M1','CLI2','BGT657','250','DUKE','80.0000'),('M2','CLI3','AKT654','250','DUKE','80.000'),('M3','CLI4','LMT564','390','DUKE','90.000'),('M4','CLI1','SER569','250','DUKE','38.000');
 /*!40000 ALTER TABLE `motos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -258,10 +258,10 @@ DROP TABLE IF EXISTS `orden_servicio`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `orden_servicio` (
   `ID_ORDEN_SERVICIO` varchar(20) NOT NULL,
-  `ID_CLIENTES` varchar(20) DEFAULT NULL,
-  `ID_ADMINISTRADOR` varchar(20) DEFAULT NULL,
-  `ID_TECNICOS` varchar(20) DEFAULT NULL,
-  `ID_MOTOS` varchar(20) DEFAULT NULL,
+  `ID_CLIENTES` varchar(20) NOT NULL,
+  `ID_ADMINISTRADOR` varchar(20) NOT NULL,
+  `ID_TECNICOS` varchar(20) NOT NULL,
+  `ID_MOTOS` varchar(20) NOT NULL,
   `Fecha_inicio` datetime NOT NULL,
   `Fecha_estimada` datetime NOT NULL,
   `Fecha_fin` datetime NOT NULL,
@@ -314,7 +314,7 @@ CREATE TABLE `productos` (
 
 LOCK TABLES `productos` WRITE;
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
-INSERT INTO `productos` VALUES ('PRO1','Lubricantes y Refrigerantes','Motorex','Aceite','30',120.00,8,'Disponibles'),('PRO2','Accesorios Mecanicos','Rombo','Cadena','30',180.00,5,'Disponibles'),('PRO3','Accesorios Electricos','Minda','Direccionales','10',150.00,15,'Disponibles');
+INSERT INTO `productos` VALUES ('PRO1','Lubricantes y Refrigerantes','Motorex','Aceite','35',120.00,8,'Disponibles'),('PRO2','Accesorios Mecanicos','Rombo','Cadena','30',180.00,5,'Disponibles'),('PRO3','Accesorios Electricos','Minda','Direccionales','10',150.00,15,'Disponibles');
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -372,7 +372,7 @@ CREATE TABLE `tecnicos` (
 
 LOCK TABLES `tecnicos` WRITE;
 /*!40000 ALTER TABLE `tecnicos` DISABLE KEYS */;
-INSERT INTO `tecnicos` VALUES ('TEC1','Camilo','tec1','$2y$12$X9SuJUbs.LVoixcdiDywKOD1pYlgifqBTlHdQnjY2LMypqwz8bUea','Cedula de Ciudadania','Camiloxxx@gmail.com','315487962'),('TEC2','Alejandro','tec2','$2y$12$D/H/WNYOtLUe9Nudbj7WeOXEoVdFqE.5xzI6ltn3P5/Gl8StYT8J.','Cedula de Ciudadania','Alejandroxxx@gmail.com','311486565'),('TEC3','Santiago','tec3','$2y$12$SWAG1jyIlayXCP8p0scODOGJK46CUGtvc5RYDYus12boGBo6DrN/a','Cedula de Ciudadania','Santiagoxxx@gmail.com','311201239');
+INSERT INTO `tecnicos` VALUES ('TEC1','Camilo','tec1','$2y$12$X9SuJUbs.LVoixcdiDywKOD1pYlgifqBTlHdQnjY2LMypqwz8bUea','Cedula de Ciudadania','Camiloxxx@gmail.com','315487962'),('TEC2','Alejandro','tec2','$2y$12$D/H/WNYOtLUe9Nudbj7WeOXEoVdFqE.5xzI6ltn3P5/Gl8StYT8J.','Cedula de Ciudadania','Alejandroxxx@gmail.com','311486565'),('TEC3','Santiago','tec3','$2y$12$SWAG1jyIlayXCP8p0scODOGJK46CUGtvc5RYDYus12boGBo6DrN/a','Cedula de Ciudadania','Santiagoxxx@gmail.com','311201238');
 /*!40000 ALTER TABLE `tecnicos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -385,4 +385,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-12-13 16:31:38
+-- Dump completed on 2026-01-26 17:04:54
