@@ -107,6 +107,7 @@ CREATE TABLE `comprobante` (
 
 LOCK TABLES `comprobante` WRITE;
 /*!40000 ALTER TABLE `comprobante` DISABLE KEYS */;
+INSERT INTO `comprobante` VALUES ('COM1','INF1','CLI1','ADM1','5000000','2025-11-05 00:00:00','Pagado'),('COM2','INF2','CLI2','ADM2','3000000','2025-05-15 00:00:00','Pagado'),('COM3','INF3','CLI3','ADM2','6000000','2025-01-10 00:00:00','Pagado');
 /*!40000 ALTER TABLE `comprobante` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -181,6 +182,7 @@ CREATE TABLE `historial` (
 
 LOCK TABLES `historial` WRITE;
 /*!40000 ALTER TABLE `historial` DISABLE KEYS */;
+INSERT INTO `historial` VALUES ('HI1','ORD1','COM1','INF1','TEC1','CLI1','Informe orden servicio 1','2025-11-15 17:45:00'),('HI2','ORD2','COM2','INF2','TEC2','CLI2','Informe orden servicio 2','2025-08-06 17:45:00'),('HI3','ORD3','COM3','INF3','TEC3','CLI3','Informe orden servicio 3','2025-05-10 17:45:00');
 /*!40000 ALTER TABLE `historial` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -385,4 +387,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-01-26 17:04:54
+-- Dump completed on 2026-03-14 11:59:27

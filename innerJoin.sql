@@ -113,11 +113,11 @@ insert into productos(Categoria,Marca,Nombre,Garantia,Precio,Cantidad,Estado)val
 insert into orden_servicio(ID_CLIENTES,ID_ADMINISTRADOR,ID_TECNICOS,ID_MOTOS,Fecha_inicio,Fecha_estimada,Fecha_fin,Estado)values('4','1','3','3','2025-11-05 14:42:00','2025-11-15 15:20:00','2025-11-20 13:10:00','Finalizada');
 insert into detalles_orden_servicio(ID_ORDEN_SERVICIO,ID_SERVICIOS,ID_PRODUCTOS,Garantia,Estado,Precio)values('3','3','1','15','Finalizada','600000');
 insert into informe(ID_DETALLES_ORDEN_SERVICIO,ID_ADMINISTRADOR,ID_TECNICOS,Descripcion,Fecha,Estado)values('3','1','3','En espera de repuestos','2025-11-25','Pendiente');
-insert into comprobante(ID_INFORME,ID_CLIENTES,ID_ADMINISTRADOR,Monto,Fecha,Estado_pago)values('3','4','1','5000000','2025-11-05','Pagado');
-insert into historial(ID_ORDEN_SERVICIO,ID_COMPROBANTE,ID_INFORME,ID_TECNICOS,ID_CLIENTES,Descripcion,Fecha_registro)values('3','3','3','3','4','Historial','2025-11-15 17:45:00');
-update clientes
-set contrasena = '8063'
-where ID_CLIENTES = 'CLI4';
+insert into comprobante(ID_COMPROBANTE,ID_INFORME,ID_CLIENTES,ID_ADMINISTRADOR,Monto,Fecha,Estado_pago)values('COM3','INF3','CLI3','ADM2','6000000','2025-01-10','Pagado');
+insert into historial(ID_HISTORIAL,ID_ORDEN_SERVICIO,ID_COMPROBANTE,ID_INFORME,ID_TECNICOS,ID_CLIENTES,Descripcion,Fecha_registro)values('HI3','ORD3','COM3','INF3','TEC3','CLI3','Informe orden servicio 3','2025-05-10 17:45:00');
+update comprobante
+set ID_COMPROBANTE = 'COM1'
+where ID_COMPROBANTE = '';
 
 ALTER TABLE comprobante DROP FOREIGN KEY comprobante_ibfk_1;
 ALTER TABLE comprobante DROP FOREIGN KEY comprobante_ibfk_2;
