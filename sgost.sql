@@ -41,7 +41,7 @@ CREATE TABLE `administradores` (
 
 LOCK TABLES `administradores` WRITE;
 /*!40000 ALTER TABLE `administradores` DISABLE KEYS */;
-INSERT INTO `administradores` VALUES ('ADM1','JuanP','admi1','$2y$12$nDYUThk.eATWvBATzZmr3.Mk5B3pddtohoLpFyVm21QrPux4T75MS','Juanpxxx@gmail.com','Cedula de Ciudadania','322546987'),('ADM2','Alejo','admi2','$2y$12$H8qe.WjD1ERPsxb45ID.k.6xppKmULdUOTnp4LIZmB9z0DEYDXgyG','Alejopxxx@gmail.com','Pasaporte','325586785');
+INSERT INTO `administradores` VALUES ('ADM1','juanP','admi','$2b$10$5ZwsURC9omVIB185rMwqvObocrLU7zYm2WeoyZugELQlhMF1pjaLS','juanP@gmail.com','Cedula de ciudadania','3112456987');
 /*!40000 ALTER TABLE `administradores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -85,7 +85,7 @@ DROP TABLE IF EXISTS `comprobante`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `comprobante` (
   `ID_COMPROBANTE` varchar(20) NOT NULL,
-  `ID_INFORME` varchar(20) NOT NULL,
+  `ID_INFORME` varchar(20) DEFAULT NULL,
   `ID_CLIENTES` varchar(20) NOT NULL,
   `ID_ADMINISTRADOR` varchar(20) NOT NULL,
   `Monto` varchar(100) NOT NULL,
@@ -95,9 +95,9 @@ CREATE TABLE `comprobante` (
   KEY `ID_INFORME` (`ID_INFORME`),
   KEY `ID_CLIENTES` (`ID_CLIENTES`),
   KEY `ID_ADMINISTRADOR` (`ID_ADMINISTRADOR`),
-  CONSTRAINT `comprobante_ibfk_1` FOREIGN KEY (`ID_INFORME`) REFERENCES `informe` (`ID_INFORME`),
+  CONSTRAINT `comprobante_ibfk_1` FOREIGN KEY (`ID_INFORME`) REFERENCES `informe` (`ID_INFORME`) ON DELETE SET NULL,
   CONSTRAINT `comprobante_ibfk_2` FOREIGN KEY (`ID_CLIENTES`) REFERENCES `clientes` (`ID_CLIENTES`),
-  CONSTRAINT `comprobante_ibfk_3` FOREIGN KEY (`ID_ADMINISTRADOR`) REFERENCES `administradores` (`ID_ADMINISTRADOR`)
+  CONSTRAINT `comprobante_ibfk_3` FOREIGN KEY (`ID_ADMINISTRADOR`) REFERENCES `administradores` (`ID_ADMINISTRADOR`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -107,7 +107,6 @@ CREATE TABLE `comprobante` (
 
 LOCK TABLES `comprobante` WRITE;
 /*!40000 ALTER TABLE `comprobante` DISABLE KEYS */;
-INSERT INTO `comprobante` VALUES ('COM1','INF1','CLI1','ADM1','5000000','2025-11-05 00:00:00','Pagado'),('COM2','INF2','CLI2','ADM2','3000000','2025-05-15 00:00:00','Pagado'),('COM3','INF3','CLI3','ADM2','6000000','2025-01-10 00:00:00','Pagado');
 /*!40000 ALTER TABLE `comprobante` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -130,7 +129,7 @@ CREATE TABLE `detalles_orden_servicio` (
   KEY `ID_ORDEN_SERVICIO` (`ID_ORDEN_SERVICIO`),
   KEY `ID_SERVICIOS` (`ID_SERVICIOS`),
   KEY `ID_PRODUCTOS` (`ID_PRODUCTOS`),
-  CONSTRAINT `detalles_orden_servicio_ibfk_1` FOREIGN KEY (`ID_ORDEN_SERVICIO`) REFERENCES `orden_servicio` (`ID_ORDEN_SERVICIO`),
+  CONSTRAINT `detalles_orden_servicio_ibfk_1` FOREIGN KEY (`ID_ORDEN_SERVICIO`) REFERENCES `orden_servicio` (`ID_ORDEN_SERVICIO`) ON DELETE CASCADE,
   CONSTRAINT `detalles_orden_servicio_ibfk_2` FOREIGN KEY (`ID_SERVICIOS`) REFERENCES `servicios` (`ID_SERVICIOS`),
   CONSTRAINT `detalles_orden_servicio_ibfk_3` FOREIGN KEY (`ID_PRODUCTOS`) REFERENCES `productos` (`ID_PRODUCTOS`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -142,7 +141,6 @@ CREATE TABLE `detalles_orden_servicio` (
 
 LOCK TABLES `detalles_orden_servicio` WRITE;
 /*!40000 ALTER TABLE `detalles_orden_servicio` DISABLE KEYS */;
-INSERT INTO `detalles_orden_servicio` VALUES ('DET1','ORD1','SER1','PRO2','15','En espera',180.00),('DET2','ORD2','SER2','PRO3','14','Finalizada',200.00),('DET3','ORD3','SER4','PRO1','30','En espera',50.00);
 /*!40000 ALTER TABLE `detalles_orden_servicio` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -169,8 +167,8 @@ CREATE TABLE `historial` (
   KEY `historial_ibfk_4` (`ID_TECNICOS`),
   KEY `historial_ibfk_5` (`ID_CLIENTES`),
   CONSTRAINT `historial_ibfk_1` FOREIGN KEY (`ID_ORDEN_SERVICIO`) REFERENCES `orden_servicio` (`ID_ORDEN_SERVICIO`),
-  CONSTRAINT `historial_ibfk_2` FOREIGN KEY (`ID_COMPROBANTE`) REFERENCES `comprobante` (`ID_COMPROBANTE`),
-  CONSTRAINT `historial_ibfk_3` FOREIGN KEY (`ID_INFORME`) REFERENCES `informe` (`ID_INFORME`),
+  CONSTRAINT `historial_ibfk_2` FOREIGN KEY (`ID_COMPROBANTE`) REFERENCES `comprobante` (`ID_COMPROBANTE`) ON DELETE CASCADE,
+  CONSTRAINT `historial_ibfk_3` FOREIGN KEY (`ID_INFORME`) REFERENCES `informe` (`ID_INFORME`) ON DELETE CASCADE,
   CONSTRAINT `historial_ibfk_4` FOREIGN KEY (`ID_TECNICOS`) REFERENCES `tecnicos` (`ID_TECNICOS`),
   CONSTRAINT `historial_ibfk_5` FOREIGN KEY (`ID_CLIENTES`) REFERENCES `clientes` (`ID_CLIENTES`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -182,7 +180,6 @@ CREATE TABLE `historial` (
 
 LOCK TABLES `historial` WRITE;
 /*!40000 ALTER TABLE `historial` DISABLE KEYS */;
-INSERT INTO `historial` VALUES ('HI1','ORD1','COM1','INF1','TEC1','CLI1','Informe orden servicio 1','2025-11-15 17:45:00'),('HI2','ORD2','COM2','INF2','TEC2','CLI2','Informe orden servicio 2','2025-08-06 17:45:00'),('HI3','ORD3','COM3','INF3','TEC3','CLI3','Informe orden servicio 3','2025-05-10 17:45:00');
 /*!40000 ALTER TABLE `historial` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -205,8 +202,8 @@ CREATE TABLE `informe` (
   KEY `ID_DETALLES_ORDEN_SERVICIO` (`ID_DETALLES_ORDEN_SERVICIO`),
   KEY `ID_ADMINISTRADOR` (`ID_ADMINISTRADOR`),
   KEY `ID_TECNICOS` (`ID_TECNICOS`),
-  CONSTRAINT `informe_ibfk_1` FOREIGN KEY (`ID_DETALLES_ORDEN_SERVICIO`) REFERENCES `detalles_orden_servicio` (`ID_DETALLES_ORDEN_SERVICIO`),
-  CONSTRAINT `informe_ibfk_2` FOREIGN KEY (`ID_ADMINISTRADOR`) REFERENCES `administradores` (`ID_ADMINISTRADOR`),
+  CONSTRAINT `informe_ibfk_1` FOREIGN KEY (`ID_DETALLES_ORDEN_SERVICIO`) REFERENCES `detalles_orden_servicio` (`ID_DETALLES_ORDEN_SERVICIO`) ON DELETE CASCADE,
+  CONSTRAINT `informe_ibfk_2` FOREIGN KEY (`ID_ADMINISTRADOR`) REFERENCES `administradores` (`ID_ADMINISTRADOR`) ON DELETE CASCADE,
   CONSTRAINT `informe_ibfk_3` FOREIGN KEY (`ID_TECNICOS`) REFERENCES `tecnicos` (`ID_TECNICOS`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -217,7 +214,6 @@ CREATE TABLE `informe` (
 
 LOCK TABLES `informe` WRITE;
 /*!40000 ALTER TABLE `informe` DISABLE KEYS */;
-INSERT INTO `informe` VALUES ('INF1','DET1','ADM1','TEC1','En espera','2025-11-13 13:14:00','En espera'),('INF2','DET2','ADM2','TEC2','Lista para entrega','2025-11-13 13:14:00','En espera'),('INF3','DET3','ADM1','TEC1','Informe orden tres','2025-11-13 13:15:00','Finalizada');
 /*!40000 ALTER TABLE `informe` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -274,7 +270,7 @@ CREATE TABLE `orden_servicio` (
   KEY `ID_TECNICOS` (`ID_TECNICOS`),
   KEY `ID_MOTOS` (`ID_MOTOS`),
   CONSTRAINT `orden_servicio_ibfk_1` FOREIGN KEY (`ID_CLIENTES`) REFERENCES `clientes` (`ID_CLIENTES`),
-  CONSTRAINT `orden_servicio_ibfk_2` FOREIGN KEY (`ID_ADMINISTRADOR`) REFERENCES `administradores` (`ID_ADMINISTRADOR`),
+  CONSTRAINT `orden_servicio_ibfk_2` FOREIGN KEY (`ID_ADMINISTRADOR`) REFERENCES `administradores` (`ID_ADMINISTRADOR`) ON DELETE CASCADE,
   CONSTRAINT `orden_servicio_ibfk_3` FOREIGN KEY (`ID_TECNICOS`) REFERENCES `tecnicos` (`ID_TECNICOS`),
   CONSTRAINT `orden_servicio_ibfk_4` FOREIGN KEY (`ID_MOTOS`) REFERENCES `motos` (`ID_MOTOS`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -286,7 +282,6 @@ CREATE TABLE `orden_servicio` (
 
 LOCK TABLES `orden_servicio` WRITE;
 /*!40000 ALTER TABLE `orden_servicio` DISABLE KEYS */;
-INSERT INTO `orden_servicio` VALUES ('ORD1','CLI1','ADM1','TEC3','M4','2025-11-10 13:14:00','2025-11-13 13:14:00','2025-11-20 13:14:00','En espera'),('ORD2','CLI2','ADM1','TEC2','M2','2025-11-10 13:14:00','2025-11-13 13:14:00','2025-11-20 13:14:00','Finalizada'),('ORD3','CLI3','ADM2','TEC3','M3','2025-11-10 13:14:00','2025-11-13 13:14:00','2025-11-20 13:14:00','Finalizada');
 /*!40000 ALTER TABLE `orden_servicio` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -387,4 +382,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-03-14 11:59:27
+-- Dump completed on 2026-03-21 21:32:20
