@@ -41,7 +41,7 @@ CREATE TABLE `administradores` (
 
 LOCK TABLES `administradores` WRITE;
 /*!40000 ALTER TABLE `administradores` DISABLE KEYS */;
-INSERT INTO `administradores` VALUES ('ADM1','juan Parra','admi1','$2b$10$UoPbv3.UH0oi/K.thjq7SuVj9q1BnsevBA0f9Cqf9a8ln7wpDWVaO','Juanpxxx@gmail.com','Cedula de ciudadania','3174569852'),('ADM2','Alejo','admi2','$2b$10$fPrcgNboiJ4KzzLLfbhgvOMCA.8CLjmtu8DItTbolr5uFbeDjifkS','Alejo@gmail.com','Cedula de extranjeria','3124569852');
+INSERT INTO `administradores` VALUES ('ADM1','juan Parra','admi1','$2b$10$UoPbv3.UH0oi/K.thjq7SuVj9q1BnsevBA0f9Cqf9a8ln7wpDWVaO','Juanpxxx@gmail.com','Tarjeta de identidad','3174569852'),('ADMI3','juan Parra','admi3','$2b$10$2.GnYG8B8Uy8pni9o7S5JOacKb0dcpUQoxeUP19vIfi7WMl95qq8.','Juanpxxx@gmail.com','Cedula de ciudadania','3124567891');
 /*!40000 ALTER TABLE `administradores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -382,4 +382,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-03-23 15:51:36
+-- Dump completed on 2026-03-25  9:58:17
