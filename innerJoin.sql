@@ -104,7 +104,7 @@ select * from historial;
 
 /* Datos insertados */
 delete from administradores where ID_ADMINISTRADOR = 'ADM2';
-delete from tecnicos where ID_TECNICOS = 'TEC3';
+delete from tecnicos where ID_TECNICOS = 'TEC1';
 insert into administradores(Nombre,Correo,Contrasena,Telefono)values('Alejo','Alejopxxx@gmail.com','5469871','325586787');
 insert into clientes(Ubicacion,Nombre,TipoDocumento,Correo,Telefono)values('Cundinamarca','Bok','Cedula de ciudadania','Terryxxx@gmail.com','300586787');
 insert into tecnicos(Nombre,Correo,Contrasena,Telefono)values('Santiago','Santiagoxxx@gmail.com','5471256','312425462');
@@ -120,9 +120,9 @@ update comprobante
 set ID_COMPROBANTE = 'COM1'
 where ID_COMPROBANTE = '';
 
-UPDATE administradores 
+UPDATE tecnicos
 SET contrasena = '789'
-WHERE ID_ADMINISTRADOR = 'ADM2';
+WHERE ID_TECNICOS = 'TEC1';
 
 UPDATE administradores 
 SET contrasena = '$2y$12$KhPINZBURPa1BunW6gOBuuFQpjK6WJHcXZGeVNxJ4T6UX/dwCrj8u'

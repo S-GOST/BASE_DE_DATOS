@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 8.0.43, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.45, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: sgost
 -- ------------------------------------------------------
@@ -41,7 +41,7 @@ CREATE TABLE `administradores` (
 
 LOCK TABLES `administradores` WRITE;
 /*!40000 ALTER TABLE `administradores` DISABLE KEYS */;
-INSERT INTO `administradores` VALUES ('ADM1','juan Parra','admi1','$2b$10$UoPbv3.UH0oi/K.thjq7SuVj9q1BnsevBA0f9Cqf9a8ln7wpDWVaO','Juanpxxx@gmail.com','Tarjeta de identidad','3174569852'),('ADMI3','juan Parra','admi3','$2b$10$2.GnYG8B8Uy8pni9o7S5JOacKb0dcpUQoxeUP19vIfi7WMl95qq8.','Juanpxxx@gmail.com','Cedula de ciudadania','3124567891');
+INSERT INTO `administradores` VALUES ('ADMI1','juan Parra','Admi1','$2b$10$tKvEeetuwB0Ggb66nHIC9OYtRC156kiqelrL4Ri8CKOnNCfPSN73G','Juanpxxx@gmail.com','Cedula de ciudadania','3174569852'),('ADMI2','Alejo','Admi2','$2b$10$EpbCsA.KU/eNr1Z8vxbu8eHPi5CDtHDsfI3aI0GC1hcssfgvmOi8G','Alejoxxx@gmail.com','Cedula de ciudadania','3124567891');
 /*!40000 ALTER TABLE `administradores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -369,7 +369,7 @@ CREATE TABLE `tecnicos` (
 
 LOCK TABLES `tecnicos` WRITE;
 /*!40000 ALTER TABLE `tecnicos` DISABLE KEYS */;
-INSERT INTO `tecnicos` VALUES ('TEC1','Camilo','tec1','$2y$12$X9SuJUbs.LVoixcdiDywKOD1pYlgifqBTlHdQnjY2LMypqwz8bUea','Cedula de Ciudadania','Camiloxxx@gmail.com','315487962'),('TEC2','Alejandro','tec2','$2y$12$D/H/WNYOtLUe9Nudbj7WeOXEoVdFqE.5xzI6ltn3P5/Gl8StYT8J.','Cedula de Ciudadania','Alejandroxxx@gmail.com','311486565');
+INSERT INTO `tecnicos` VALUES ('TEC1','Camilo','tec1','$2b$10$6a.ON/yOMjvyHWXAYn7O9OudfIbY5YbIv4aorsOWxZfO5kJkEK9kK','CC','tecnico2@email.com','3001234567'),('TEC2','Alejo','tec2','$2b$10$Om1kwqLCW/cbd3OAa5vJxejOCddQPvgfJud.D9K7mbWe2pdEK9zWi','Cedula de ciudadania','tecnico2@email.com','300123456');
 /*!40000 ALTER TABLE `tecnicos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -382,4 +382,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-03-25  9:58:17
+-- Dump completed on 2026-04-07 22:25:50
