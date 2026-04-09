@@ -72,7 +72,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-INSERT INTO `clientes` VALUES ('CLI1','Bogota','Bok','bok1','$2y$12$Hkl5r0hZL/RMXTzGDPyW5OUhPxzOYT6ewkLASmAjEze/BDcK3KX9q','Nit','Bokxxx@gmail.com','3002125478'),('CLI2','Bogota','Rosa','Rosa2','$2y$12$lyMRPA3M4uwL4lDOGEv8I.ldboFUjAku2ck3EjR2zFtIDuc5wJbpy','Cedula de Ciudadania','Rosaxxx@gmail.com','311202547'),('CLI3','Cundinamarca','Teodoro','teodoro3','$2y$12$dLBGpiisUAUtvPCvEtnacuasCNpl4md41RMwt5T3V2zhg5ka4IvS.','Pasaporte','Teodoroxxx@gmail.com','312256478'),('CLI4','Bogota','Terry','terry4','$2y$12$3tIkXeWRD/5jAZ/gsPGudOQwEdx5fNUmy3Toqavsf/Lhbb7qUI2Du','Cedula de Ciudadania','Terryxxx@gmail.com','300785141');
+INSERT INTO `clientes` VALUES ('CLI1','Bogota','Bok','bok1','$2b$10$vKuYWHDp0RMHySKTq662RO/WXcfp3vO4n2r2RD/7L3oTL6uSzDtce','Cedula de ciudadania','Bokxxx@gmail.com','3002125478'),('CLI2','Bogota','Rosa','Rosa2','$2y$12$lyMRPA3M4uwL4lDOGEv8I.ldboFUjAku2ck3EjR2zFtIDuc5wJbpy','Cedula de Ciudadania','Rosaxxx@gmail.com','311202547'),('CLI3','Cundinamarca','Teodoro','teodoro3','$2y$12$dLBGpiisUAUtvPCvEtnacuasCNpl4md41RMwt5T3V2zhg5ka4IvS.','Pasaporte','Teodoroxxx@gmail.com','312256478'),('CLI4','Bogota','Terry','terry4','$2y$12$3tIkXeWRD/5jAZ/gsPGudOQwEdx5fNUmy3Toqavsf/Lhbb7qUI2Du','Cedula de Ciudadania','Terryxxx@gmail.com','300785141'),('CLI_TEST','Bogota','Cliente Test','clitest','$2b$10$dqoEY0F6FKc1u0BS7uzQ/uex7cTkZ49Fo2AzA.c5eKZ72W/A5h92O','CC','test@cliente.com','0987654321');
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -141,6 +141,7 @@ CREATE TABLE `detalles_orden_servicio` (
 
 LOCK TABLES `detalles_orden_servicio` WRITE;
 /*!40000 ALTER TABLE `detalles_orden_servicio` DISABLE KEYS */;
+INSERT INTO `detalles_orden_servicio` VALUES ('DEO1','ORD1','SER1','PRO1','15','Finalizada',600000.00);
 /*!40000 ALTER TABLE `detalles_orden_servicio` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -282,6 +283,7 @@ CREATE TABLE `orden_servicio` (
 
 LOCK TABLES `orden_servicio` WRITE;
 /*!40000 ALTER TABLE `orden_servicio` DISABLE KEYS */;
+INSERT INTO `orden_servicio` VALUES ('ORD1','CLI1','ADMI1','TEC1','M1','2025-11-05 14:42:00','2025-11-15 15:20:00','2025-11-20 13:10:00','Finalizada'),('ORD2','CLI2','ADMI2','TEC2','M2','2025-11-05 14:42:00','2025-11-05 14:42:00','2025-11-05 14:42:00','Pendiente');
 /*!40000 ALTER TABLE `orden_servicio` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -369,7 +371,7 @@ CREATE TABLE `tecnicos` (
 
 LOCK TABLES `tecnicos` WRITE;
 /*!40000 ALTER TABLE `tecnicos` DISABLE KEYS */;
-INSERT INTO `tecnicos` VALUES ('TEC1','Camilo','tec1','$2b$10$6a.ON/yOMjvyHWXAYn7O9OudfIbY5YbIv4aorsOWxZfO5kJkEK9kK','CC','tecnico2@email.com','3001234567'),('TEC2','Alejo','tec2','$2b$10$Om1kwqLCW/cbd3OAa5vJxejOCddQPvgfJud.D9K7mbWe2pdEK9zWi','Cedula de ciudadania','tecnico2@email.com','300123456');
+INSERT INTO `tecnicos` VALUES ('TEC1','Camilo','tec1','$2b$10$6a.ON/yOMjvyHWXAYn7O9OudfIbY5YbIv4aorsOWxZfO5kJkEK9kK','CC','tecnico2@email.com','3001234567'),('TEC2','Alejo','tec2','$2b$10$Om1kwqLCW/cbd3OAa5vJxejOCddQPvgfJud.D9K7mbWe2pdEK9zWi','Cedula de ciudadania','tecnico2@email.com','300123456'),('TEC_TEST','Tecnico Test','tectest','$2b$10$dqoEY0F6FKc1u0BS7uzQ/uex7cTkZ49Fo2AzA.c5eKZ72W/A5h92O','CC','test@tecnico.com','1234567890');
 /*!40000 ALTER TABLE `tecnicos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -382,4 +384,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-04-07 22:25:50
+-- Dump completed on 2026-04-08 22:23:13
