@@ -91,19 +91,20 @@ ADD COLUMN contrasena VARCHAR(255) AFTER usuario;
 
 
 select * from administradores;
-select * from clientes;
 select * from tecnicos;
+select * from clientes;
 select * from motos;
 select * from servicios;
 select * from productos;
-select * from detalles_orden_servicio;
 select * from orden_servicio;
+select * from detalles_orden_servicio;
 select * from informe;
 select * from comprobante;
 select * from historial;
 
+
 /* Datos insertados */
-delete from administradores where ID_ADMINISTRADOR = 'ADM2';
+delete from clientes where ID_CLIENTES = 'CLI_TEST';
 delete from tecnicos where ID_TECNICOS = 'TEC1';
 insert into administradores(Nombre,Correo,Contrasena,Telefono)values('Alejo','Alejopxxx@gmail.com','5469871','325586787');
 insert into clientes(Ubicacion,Nombre,TipoDocumento,Correo,Telefono)values('Cundinamarca','Bok','Cedula de ciudadania','Terryxxx@gmail.com','300586787');
@@ -113,7 +114,7 @@ insert into servicios(Nombre,Categoria,Garantia,Estado,Precio)values('Diagnostic
 insert into productos(Categoria,Marca,Nombre,Garantia,Precio,Cantidad,Estado)values('Accesorios Electricos','Minda','Direccionales','10','150000','15','Disponibles');
 insert into orden_servicio(ID_CLIENTES,ID_ADMINISTRADOR,ID_TECNICOS,ID_MOTOS,Fecha_inicio,Fecha_estimada,Fecha_fin,Estado)values('4','1','3','3','2025-11-05 14:42:00','2025-11-15 15:20:00','2025-11-20 13:10:00','Finalizada');
 insert into detalles_orden_servicio(ID_ORDEN_SERVICIO,ID_SERVICIOS,ID_PRODUCTOS,Garantia,Estado,Precio)values('3','3','1','15','Finalizada','600000');
-insert into informe(ID_DETALLES_ORDEN_SERVICIO,ID_ADMINISTRADOR,ID_TECNICOS,Descripcion,Fecha,Estado)values('3','1','3','En espera de repuestos','2025-11-25','Pendiente');
+insert into informe(ID_INFORME,ID_DETALLES_ORDEN_SERVICIO,ID_ADMINISTRADOR,ID_TECNICOS,Descripcion,Fecha,Estado)values('INF1','DEO1','ADMI1','TEC2','En espera de repuestos','2025-11-25','Pendiente');
 insert into comprobante(ID_COMPROBANTE,ID_INFORME,ID_CLIENTES,ID_ADMINISTRADOR,Monto,Fecha,Estado_pago)values('COM3','INF3','CLI3','ADM2','6000000','2025-01-10','Pagado');
 insert into historial(ID_HISTORIAL,ID_ORDEN_SERVICIO,ID_COMPROBANTE,ID_INFORME,ID_TECNICOS,ID_CLIENTES,Descripcion,Fecha_registro)values('HI3','ORD3','COM3','INF3','TEC3','CLI3','Informe orden servicio 3','2025-05-10 17:45:00');
 update comprobante
