@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 8.0.45, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.43, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: sgost
 -- ------------------------------------------------------
@@ -107,6 +107,7 @@ CREATE TABLE `comprobante` (
 
 LOCK TABLES `comprobante` WRITE;
 /*!40000 ALTER TABLE `comprobante` DISABLE KEYS */;
+INSERT INTO `comprobante` VALUES ('COM1','INF2','CLI2','ADMI1','500','2025-05-20 00:00:00','Pendiente'),('COM2','INF2','CLI2','ADMI2','700','2025-05-02 00:00:00','Pagado');
 /*!40000 ALTER TABLE `comprobante` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -141,7 +142,7 @@ CREATE TABLE `detalles_orden_servicio` (
 
 LOCK TABLES `detalles_orden_servicio` WRITE;
 /*!40000 ALTER TABLE `detalles_orden_servicio` DISABLE KEYS */;
-INSERT INTO `detalles_orden_servicio` VALUES ('DEO1','ORD1','SER1','PRO1','15','Finalizada',600000.00);
+INSERT INTO `detalles_orden_servicio` VALUES ('DEO1','ORD1','SER1','PRO1','0','En Proceso',600.00),('DEO2','ORD2','SER2','PRO2','30','En Proceso',200.00);
 /*!40000 ALTER TABLE `detalles_orden_servicio` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -181,6 +182,7 @@ CREATE TABLE `historial` (
 
 LOCK TABLES `historial` WRITE;
 /*!40000 ALTER TABLE `historial` DISABLE KEYS */;
+INSERT INTO `historial` VALUES ('H1','ORD1','COM1','INF1','TEC1','CLI1','Historial orden de servicio numero 1','2025-05-20 00:00:00'),('H2','ORD2','COM2','INF2','TEC2','CLI2','historial orden servicio numero 2','2025-05-20 00:00:00');
 /*!40000 ALTER TABLE `historial` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -215,6 +217,7 @@ CREATE TABLE `informe` (
 
 LOCK TABLES `informe` WRITE;
 /*!40000 ALTER TABLE `informe` DISABLE KEYS */;
+INSERT INTO `informe` VALUES ('INF1','DEO1','ADMI1','TEC2','informe orden de servicio 1','2025-02-05 00:00:00','En espera de repuest'),('INF2','DEO2','ADMI2','TEC1','informe orden de servicio numero 1','2025-05-26 00:00:00','Pendiente');
 /*!40000 ALTER TABLE `informe` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -371,7 +374,7 @@ CREATE TABLE `tecnicos` (
 
 LOCK TABLES `tecnicos` WRITE;
 /*!40000 ALTER TABLE `tecnicos` DISABLE KEYS */;
-INSERT INTO `tecnicos` VALUES ('TEC1','Camilo','tec1','$2b$10$6a.ON/yOMjvyHWXAYn7O9OudfIbY5YbIv4aorsOWxZfO5kJkEK9kK','CC','tecnico2@email.com','3001234567'),('TEC2','Alejo','tec2','$2b$10$T7kkUvpgwjRWfq.oXLITj.BhiiyVXpaTu5Kj8T3ItSyxHPDTe3z1m','CC','tecnico2@email.com','300123456');
+INSERT INTO `tecnicos` VALUES ('TEC1','Camilo','tec1','$2b$10$6a.ON/yOMjvyHWXAYn7O9OudfIbY5YbIv4aorsOWxZfO5kJkEK9kK','CC','tecnico2@email.com','3001234567'),('TEC2','Alejo','tec2','$2b$10$KtQ/jJszDiKlo3mcuPSU7uT2fIQsO90FeT.LaoUGjAdeFSngNwm/y','CC','tecnico2@email.com','300123456');
 /*!40000 ALTER TABLE `tecnicos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -384,4 +387,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-04-24 12:53:36
+-- Dump completed on 2026-04-24 17:45:47
