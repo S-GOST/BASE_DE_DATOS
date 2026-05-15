@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `sgost` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+USE `sgost`;
 -- MySQL dump 10.13  Distrib 8.0.46, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: sgost
@@ -32,7 +34,7 @@ CREATE TABLE `administradores` (
   `Telefono` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`ID_ADMINISTRADOR`),
   UNIQUE KEY `usuario` (`usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +43,7 @@ CREATE TABLE `administradores` (
 
 LOCK TABLES `administradores` WRITE;
 /*!40000 ALTER TABLE `administradores` DISABLE KEYS */;
-INSERT INTO `administradores` VALUES (1,'juan Parra','Admi1','$2b$10$tKvEeetuwB0Ggb66nHIC9OYtRC156kiqelrL4Ri8CKOnNCfPSN73G','Juanpxxx@gmail.com','CC','3174569852'),(2,'Alejo','Admi2','$2b$10$EpbCsA.KU/eNr1Z8vxbu8eHPi5CDtHDsfI3aI0GC1hcssfgvmOi8G','Alejoxxx@gmail.com','CC','3124567891');
+INSERT INTO `administradores` VALUES (1,'juan Parra','Admi1','$2b$10$tKvEeetuwB0Ggb66nHIC9OYtRC156kiqelrL4Ri8CKOnNCfPSN73G','Juanpxxx@gmail.com','Cedula de ciudadania','3174569852'),(2,'Alejo','Admi2','$2b$10$/qs04UGhpdaVvbaL2D0Ik.2E9F2rDTJKTvYkxZgy6rTdd3V9KkO.m','Alejoxxx@gmail.com','Cedula de ciudadania','3124567891'),(3,'Administrador numero 3','Admi3','$2b$10$1sCXQYJjhnnNmNOqt5rXGuLK.2OPN2B3XdpskNKLtEHHv4H7c/ZyW','administradornumerTres@gmail.com','Cedula de ciudadania','3124567891'),(4,'Administrador numero 4','Admi4','$2b$10$5meC508xnDPX5GptfhRX7e4huNXrxB6XMWKkEgDUhCOuUJzTqw56K','administradornumer4@gmail.com','Cedula de extranjeria','3124567891');
 /*!40000 ALTER TABLE `administradores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -133,7 +135,7 @@ CREATE TABLE `detalles_orden_servicio` (
   CONSTRAINT `dos_ibfk_1` FOREIGN KEY (`ID_ORDEN_SERVICIO`) REFERENCES `orden_servicio` (`ID_ORDEN_SERVICIO`) ON DELETE CASCADE,
   CONSTRAINT `dos_ibfk_2` FOREIGN KEY (`ID_SERVICIOS`) REFERENCES `servicios` (`ID_SERVICIOS`) ON DELETE CASCADE,
   CONSTRAINT `dos_ibfk_3` FOREIGN KEY (`ID_PRODUCTOS`) REFERENCES `productos` (`ID_PRODUCTOS`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -142,7 +144,7 @@ CREATE TABLE `detalles_orden_servicio` (
 
 LOCK TABLES `detalles_orden_servicio` WRITE;
 /*!40000 ALTER TABLE `detalles_orden_servicio` DISABLE KEYS */;
-INSERT INTO `detalles_orden_servicio` VALUES (1,1,1,1,'0','En Proceso',600.00),(2,2,2,2,'30','En Proceso',200.00);
+INSERT INTO `detalles_orden_servicio` VALUES (1,1,1,1,'0','En Proceso',600.00),(2,2,2,2,'30','En Proceso',200.00),(3,3,2,3,'20','Pendiente',200000.00),(4,4,2,4,'20','Pendiente',200000.00);
 /*!40000 ALTER TABLE `detalles_orden_servicio` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -208,7 +210,7 @@ CREATE TABLE `informe` (
   CONSTRAINT `inf_ibfk_1` FOREIGN KEY (`ID_DETALLES_ORDEN_SERVICIO`) REFERENCES `detalles_orden_servicio` (`ID_DETALLES_ORDEN_SERVICIO`) ON DELETE CASCADE,
   CONSTRAINT `inf_ibfk_2` FOREIGN KEY (`ID_ADMINISTRADOR`) REFERENCES `administradores` (`ID_ADMINISTRADOR`) ON DELETE CASCADE,
   CONSTRAINT `inf_ibfk_3` FOREIGN KEY (`ID_TECNICOS`) REFERENCES `tecnicos` (`ID_TECNICOS`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -217,7 +219,7 @@ CREATE TABLE `informe` (
 
 LOCK TABLES `informe` WRITE;
 /*!40000 ALTER TABLE `informe` DISABLE KEYS */;
-INSERT INTO `informe` VALUES (1,1,1,2,'informe orden de servicio 1','2025-02-05 00:00:00','En espera de repuest'),(2,2,2,1,'informe orden de servicio numero 1','2025-05-26 00:00:00','Pendiente');
+INSERT INTO `informe` VALUES (1,1,1,2,'informe orden de servicio 1','2025-02-05 00:00:00','En espera de repuest'),(2,2,2,1,'informe orden de servicio numero 1','2025-05-26 00:00:00','Pendiente'),(3,3,3,1,'informe numero 3','2026-05-15 00:00:00','Pendiente'),(4,4,4,4,'INFORME # 4','2026-05-15 00:00:00','Completado');
 /*!40000 ALTER TABLE `informe` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -277,7 +279,7 @@ CREATE TABLE `orden_servicio` (
   CONSTRAINT `os_ibfk_2` FOREIGN KEY (`ID_ADMINISTRADOR`) REFERENCES `administradores` (`ID_ADMINISTRADOR`) ON DELETE CASCADE,
   CONSTRAINT `os_ibfk_3` FOREIGN KEY (`ID_TECNICOS`) REFERENCES `tecnicos` (`ID_TECNICOS`) ON DELETE CASCADE,
   CONSTRAINT `os_ibfk_4` FOREIGN KEY (`ID_MOTOS`) REFERENCES `motos` (`ID_MOTOS`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -286,7 +288,7 @@ CREATE TABLE `orden_servicio` (
 
 LOCK TABLES `orden_servicio` WRITE;
 /*!40000 ALTER TABLE `orden_servicio` DISABLE KEYS */;
-INSERT INTO `orden_servicio` VALUES (1,1,1,1,1,'2025-11-05 14:42:00','2025-11-15 15:20:00','2025-11-20 13:10:00','Finalizada'),(2,2,2,2,2,'2025-11-05 14:42:00','2025-11-05 14:42:00','2025-11-05 14:42:00','Pendiente');
+INSERT INTO `orden_servicio` VALUES (1,1,1,1,1,'2025-11-05 14:42:00','2025-11-15 15:20:00','2025-11-20 13:10:00','Finalizada'),(2,2,2,2,2,'2025-11-05 14:42:00','2025-11-05 14:42:00','2025-11-05 14:42:00','Pendiente'),(3,3,3,3,3,'2026-05-08 00:00:00','2026-05-09 00:00:00','2026-05-11 00:00:00','Pendiente'),(4,4,4,4,4,'2026-05-12 00:00:00','2026-05-13 00:00:00','2026-05-16 00:00:00','Pendiente');
 /*!40000 ALTER TABLE `orden_servicio` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -307,7 +309,7 @@ CREATE TABLE `productos` (
   `Cantidad` int(11) NOT NULL,
   `Estado` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`ID_PRODUCTOS`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -316,7 +318,7 @@ CREATE TABLE `productos` (
 
 LOCK TABLES `productos` WRITE;
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
-INSERT INTO `productos` VALUES (1,'Lubricantes y Refrigerantes','Motorex','Aceite','35',120.00,8,'Disponibles'),(2,'Accesorios','Rombo','Cadena','30',180.00,5,'Disponibles'),(3,'Accesorios Electricos','Minda','Direccionales','10',150.00,15,'Disponibles');
+INSERT INTO `productos` VALUES (1,'Lubricantes y refrigerantes','Motorex','Aceite','35',120000.00,8,'Disponibles'),(2,'Accesorios','Rombo','Cadena','30',180000.00,5,'Disponibles'),(3,'Accesorios','Minda','Direccionales','10',149999.98,15,'Disponibles'),(4,'Accesorios','DUKE','CHAQUETA ROCKET','20',179999.99,1,'Disponibles');
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -365,7 +367,7 @@ CREATE TABLE `tecnicos` (
   `Telefono` varchar(20) NOT NULL,
   PRIMARY KEY (`ID_TECNICOS`),
   UNIQUE KEY `usuario` (`usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -374,9 +376,13 @@ CREATE TABLE `tecnicos` (
 
 LOCK TABLES `tecnicos` WRITE;
 /*!40000 ALTER TABLE `tecnicos` DISABLE KEYS */;
-INSERT INTO `tecnicos` VALUES (1,'Camilo','tec1','$2b$10$6a.ON/yOMjvyHWXAYn7O9OudfIbY5YbIv4aorsOWxZfO5kJkEK9kK','CC','tecnico2@email.com','3001234567'),(2,'Alejo','tec2','$2b$10$KtQ/jJszDiKlo3mcuPSU7uT2fIQsO90FeT.LaoUGjAdeFSngNwm/y','CC','tecnico2@email.com','300123456');
+INSERT INTO `tecnicos` VALUES (1,'Camilo','tec1','$2b$10$6a.ON/yOMjvyHWXAYn7O9OudfIbY5YbIv4aorsOWxZfO5kJkEK9kK','CC','tecnico2@email.com','3001234567'),(2,'Alejo','tec2','$2b$10$KtQ/jJszDiKlo3mcuPSU7uT2fIQsO90FeT.LaoUGjAdeFSngNwm/y','CC','tecnico2@email.com','300123456'),(3,'TED','tec3','$2b$10$r6wt0rjJ4KCKZiag8W4FoeJ31coKYbkeiTqUh/a.c2a7MdQndjj1e','Pasaporte','Tedxxx@gmail.com','3124567891'),(4,'JET','tec4','$2b$10$cj7ClLMu9PXONtWlSw7sMe5TDMzTmgyFsQ8nT1.PY7sy87e7gPVHW','Cedula de ciudadania','jetxxx@gmail.com','3174569852');
 /*!40000 ALTER TABLE `tecnicos` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping routines for database 'sgost'
+--
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -387,4 +393,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-05-13 22:34:36
+-- Dump completed on 2026-05-15 10:56:46
