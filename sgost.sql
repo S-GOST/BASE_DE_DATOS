@@ -43,7 +43,7 @@ CREATE TABLE `administradores` (
 
 LOCK TABLES `administradores` WRITE;
 /*!40000 ALTER TABLE `administradores` DISABLE KEYS */;
-INSERT INTO `administradores` VALUES (1,'juan Parra','Admi1','$2b$10$HzuinSDYM5rDJJJcKuaIBeKJkJA5/2uvYG9OgxR1rCUHYNmp53DZy','Juanpxxx@gmail.com','Cedula de ciudadania','3174569855'),(2,'Alejo','Admi2','$2b$10$/qs04UGhpdaVvbaL2D0Ik.2E9F2rDTJKTvYkxZgy6rTdd3V9KkO.m','Alejoxxx@gmail.com','Cedula de ciudadania','3124567891'),(3,'Administrador numero 3','Admi3','$2b$10$1sCXQYJjhnnNmNOqt5rXGuLK.2OPN2B3XdpskNKLtEHHv4H7c/ZyW','administradornumerTres@gmail.com','Cedula de ciudadania','3124567891'),(4,'Administrador numero 4','Admi4','$2b$10$5meC508xnDPX5GptfhRX7e4huNXrxB6XMWKkEgDUhCOuUJzTqw56K','administradornumer4@gmail.com','Cedula de extranjeria','3124567891');
+INSERT INTO `administradores` VALUES (1,'juan Parra','Admi1','$2b$10$gyxexy5Rpmbc82uQRXZ0K.5sIrZnEJfJHn5YcsgnUX1CmGU76Qy4K','Juanpxxx@gmail.com','Cedula de ciudadania','3174569855'),(2,'Alejo','Admi2','$2b$10$/qs04UGhpdaVvbaL2D0Ik.2E9F2rDTJKTvYkxZgy6rTdd3V9KkO.m','Alejoxxx@gmail.com','Cedula de ciudadania','3124567891'),(3,'Administrador numero 3','Admi3','$2b$10$1sCXQYJjhnnNmNOqt5rXGuLK.2OPN2B3XdpskNKLtEHHv4H7c/ZyW','administradornumerTres@gmail.com','Cedula de ciudadania','3124567891'),(4,'Administrador numero 4','Admi4','$2b$10$5meC508xnDPX5GptfhRX7e4huNXrxB6XMWKkEgDUhCOuUJzTqw56K','administradornumer4@gmail.com','Cedula de extranjeria','3124567891');
 /*!40000 ALTER TABLE `administradores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -74,7 +74,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-INSERT INTO `clientes` VALUES (1,'Bogota','Bok','bok11','$2b$10$GZSn4zjbk6b4NWFSG.9JmuOfqhxqr7mr.Pq966OQoaU3MobyNLDnW','Cedula de ciudadania','Bokxxx@gmail.com','3002125479'),(2,'Bogota','Rosa','Rosa2','$2y$12$lyMRPA3M4uwL4lDOGEv8I.ldboFUjAku2ck3EjR2zFtIDuc5wJbpy','Cedula de Ciudadania','Rosaxxx@gmail.com','311202547'),(3,'Cundinamarca','Teodoro','teodoro3','$2b$10$r9cQ5TFtbfZXTD/nJzticu3Kh7bw/H5L5tUaCKbiKQ62OezjpfunS','CC','Teodoroxxx@gmail.com','312256478'),(4,'Bogota','Terry','terry4','$2b$10$5YK8CghLmq3qdrzN9v1fkeOX1tRAejGCdlU/ub70kzoiuMwCqHWRq','CC','Terryxxx@gmail.com','300785141');
+INSERT INTO `clientes` VALUES (1,'Bogota','Bok','bok11','$2b$10$GZSn4zjbk6b4NWFSG.9JmuOfqhxqr7mr.Pq966OQoaU3MobyNLDnW','Cedula de ciudadania','Bokxxx@gmail.com','3002125479'),(2,'Bogota','Rosa','Rosa2','$2y$12$lyMRPA3M4uwL4lDOGEv8I.ldboFUjAku2ck3EjR2zFtIDuc5wJbpy','Cedula de Ciudadania','Rosaxxx@gmail.com','311202547'),(3,'Cundinamarca','Teodoro','teodoro3','$2b$10$aQAZ/Mqd7aTGUrmlNir2We99.lRwXw2D7KQGzuMl15mxDVPjwAyDC','CC','Teodoroxxx@gmail.com','312256478'),(4,'Bogota','Terry','terry4','$2b$10$5YK8CghLmq3qdrzN9v1fkeOX1tRAejGCdlU/ub70kzoiuMwCqHWRq','CC','Terryxxx@gmail.com','300785141');
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -376,7 +376,7 @@ CREATE TABLE `tecnicos` (
 
 LOCK TABLES `tecnicos` WRITE;
 /*!40000 ALTER TABLE `tecnicos` DISABLE KEYS */;
-INSERT INTO `tecnicos` VALUES (1,'Camilo','tec1','$2b$10$cXmPbqyYZqCSdB4d0S2JX.s2xVsBZ6DpkWA4IX.D16eouATQ00iE.','CC','tecnico2@email.com','3001234567'),(2,'Alejo','tec2','$2b$10$VPMotdHtLLA1uJIctzY0OO.VNHYIETk8qaJSCW4FOVxCyqE52VAmG','CC','tecnico2@email.com','300123456'),(3,'TED','tec3','$2b$10$2rZY7XX864YuCsrdc12eaucfPTH6Tn6bMLNo6I7L8LcqpzvzkSERi','Pasaporte','Tedxxx@gmail.com','3124567891'),(4,'JET','tec4','$2b$10$ch6OBKOG/r8E4B.0HRvDdeliNRpdpPlZaNPImSIoFElT6RTdfhi6q','Cedula de ciudadania','jetxxx@gmail.com','3174569852');
+INSERT INTO `tecnicos` VALUES (1,'Camilo','tec1','$2b$10$cXmPbqyYZqCSdB4d0S2JX.s2xVsBZ6DpkWA4IX.D16eouATQ00iE.','CC','tecnico2@email.com','3001234567'),(2,'Alejo','tec2','$2b$10$VPMotdHtLLA1uJIctzY0OO.VNHYIETk8qaJSCW4FOVxCyqE52VAmG','CC','tecnico2@email.com','300123456'),(3,'TED','tec3','$2b$10$dYKxvMnyw5BAGtw/YECmSOGzvp9bEKo7nJXHgtI25bVlWfXR9EeEu','Pasaporte','Tedxxx@gmail.com','3124567891'),(4,'JET','tec4','$2b$10$ch6OBKOG/r8E4B.0HRvDdeliNRpdpPlZaNPImSIoFElT6RTdfhi6q','Cedula de ciudadania','jetxxx@gmail.com','3174569852');
 /*!40000 ALTER TABLE `tecnicos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -389,4 +389,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-05-24 11:59:36
+-- Dump completed on 2026-05-26 14:30:52
