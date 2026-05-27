@@ -100,7 +100,7 @@ CREATE TABLE `comprobante` (
   CONSTRAINT `comp_ibfk_1` FOREIGN KEY (`ID_INFORME`) REFERENCES `informe` (`ID_INFORME`) ON DELETE CASCADE,
   CONSTRAINT `comp_ibfk_2` FOREIGN KEY (`ID_CLIENTES`) REFERENCES `clientes` (`ID_CLIENTES`) ON DELETE CASCADE,
   CONSTRAINT `comp_ibfk_3` FOREIGN KEY (`ID_ADMINISTRADOR`) REFERENCES `administradores` (`ID_ADMINISTRADOR`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -109,7 +109,7 @@ CREATE TABLE `comprobante` (
 
 LOCK TABLES `comprobante` WRITE;
 /*!40000 ALTER TABLE `comprobante` DISABLE KEYS */;
-INSERT INTO `comprobante` VALUES (1,1,2,1,'500','2025-05-20 00:00:00','Pendiente'),(2,2,2,2,'700','2025-05-02 00:00:00','Pagado');
+INSERT INTO `comprobante` VALUES (1,1,2,1,'500','2025-05-20 00:00:00','Pendiente'),(2,2,2,2,'700','2025-05-02 00:00:00','Pagado'),(3,3,3,3,'500000','2026-05-27 00:00:00','Pendiente'),(4,4,4,4,'500000','2026-05-27 00:00:00','Pendiente');
 /*!40000 ALTER TABLE `comprobante` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -175,7 +175,7 @@ CREATE TABLE `historial` (
   CONSTRAINT `hist_ibfk_3` FOREIGN KEY (`ID_INFORME`) REFERENCES `informe` (`ID_INFORME`) ON DELETE CASCADE,
   CONSTRAINT `hist_ibfk_4` FOREIGN KEY (`ID_TECNICOS`) REFERENCES `tecnicos` (`ID_TECNICOS`) ON DELETE CASCADE,
   CONSTRAINT `hist_ibfk_5` FOREIGN KEY (`ID_CLIENTES`) REFERENCES `clientes` (`ID_CLIENTES`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -184,7 +184,7 @@ CREATE TABLE `historial` (
 
 LOCK TABLES `historial` WRITE;
 /*!40000 ALTER TABLE `historial` DISABLE KEYS */;
-INSERT INTO `historial` VALUES (1,1,1,1,1,1,'Historial orden de servicio numero 1','2025-05-20 00:00:00'),(2,2,2,2,2,2,'historial orden servicio numero 2','2025-05-20 00:00:00');
+INSERT INTO `historial` VALUES (1,1,1,1,1,1,'Historial orden de servicio numero 1','2025-05-20 00:00:00'),(2,2,2,2,2,2,'historial orden servicio numero 2','2025-05-20 00:00:00'),(3,3,3,3,3,3,'3','2023-06-02 00:00:00'),(4,4,4,4,4,4,'4','2026-06-05 00:00:00');
 /*!40000 ALTER TABLE `historial` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -389,4 +389,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-05-26 14:30:52
+-- Dump completed on 2026-05-27 11:54:11
