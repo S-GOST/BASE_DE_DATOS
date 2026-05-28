@@ -122,3 +122,17 @@ WHERE ID_TECNICOS = 'TEC1';
 UPDATE administradores 
 SET contrasena = '$2y$12$KhPINZBURPa1BunW6gOBuuFQpjK6WJHcXZGeVNxJ4T6UX/dwCrj8u'
 WHERE usuario = 'admi2';
+
+
+SELECT 
+  dos.ID_DETALLES_ORDEN_SERVICIO,
+  dos.ID_ORDEN_SERVICIO,
+  s.Nombre AS NombreServicio,
+  p.Nombre AS NombreProducto,
+  dos.Garantia,
+  dos.Estado,
+  dos.Precio
+FROM detalles_orden_servicio dos
+LEFT JOIN servicios s ON dos.ID_SERVICIOS = s.ID_SERVICIOS
+LEFT JOIN productos p ON dos.ID_PRODUCTOS = p.ID_PRODUCTOS
+WHERE dos.ID_ORDEN_SERVICIO = 1;
