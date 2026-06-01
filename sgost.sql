@@ -1,6 +1,6 @@
 CREATE DATABASE  IF NOT EXISTS `sgost` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
 USE `sgost`;
--- MySQL dump 10.13  Distrib 8.0.46, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.45, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: sgost
 -- ------------------------------------------------------
@@ -126,7 +126,6 @@ CREATE TABLE `detalles_orden_servicio` (
   `ID_SERVICIOS` int(11) NOT NULL,
   `ID_PRODUCTOS` int(11) NOT NULL,
   `Garantia` varchar(100) NOT NULL,
-  `Estado` varchar(20) NOT NULL,
   `Precio` decimal(10,2) NOT NULL,
   PRIMARY KEY (`ID_DETALLES_ORDEN_SERVICIO`),
   KEY `dos_ibfk_1` (`ID_ORDEN_SERVICIO`),
@@ -144,7 +143,7 @@ CREATE TABLE `detalles_orden_servicio` (
 
 LOCK TABLES `detalles_orden_servicio` WRITE;
 /*!40000 ALTER TABLE `detalles_orden_servicio` DISABLE KEYS */;
-INSERT INTO `detalles_orden_servicio` VALUES (1,1,1,1,'0','En Proceso',600.00),(2,2,2,2,'30','En Proceso',200.00),(3,3,2,3,'20','Pendiente',200000.00),(4,4,2,4,'20','Pendiente',200000.00);
+INSERT INTO `detalles_orden_servicio` VALUES (1,1,1,1,'0',600.00),(2,2,2,2,'30',200.00),(3,3,2,3,'20',200000.00),(4,4,2,4,'20',200000.00);
 /*!40000 ALTER TABLE `detalles_orden_servicio` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -389,4 +388,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-05-28 17:35:07
+-- Dump completed on 2026-06-01 14:23:18
