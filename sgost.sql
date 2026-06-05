@@ -1,6 +1,6 @@
 CREATE DATABASE  IF NOT EXISTS `sgost` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
 USE `sgost`;
--- MySQL dump 10.13  Distrib 8.0.45, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.46, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: sgost
 -- ------------------------------------------------------
@@ -65,7 +65,7 @@ CREATE TABLE `clientes` (
   `Telefono` varchar(20) NOT NULL,
   PRIMARY KEY (`ID_CLIENTES`),
   UNIQUE KEY `usuario` (`usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -74,7 +74,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-INSERT INTO `clientes` VALUES (1,'Bogota','Bok','bok11','$2b$10$GZSn4zjbk6b4NWFSG.9JmuOfqhxqr7mr.Pq966OQoaU3MobyNLDnW','Cedula de ciudadania','Bokxxx@gmail.com','3002125479'),(2,'Bogota','Rosa','Rosa2','$2y$12$lyMRPA3M4uwL4lDOGEv8I.ldboFUjAku2ck3EjR2zFtIDuc5wJbpy','Cedula de Ciudadania','Rosaxxx@gmail.com','311202547'),(3,'Cundinamarca','Teodoro','teodoro3','$2b$10$aQAZ/Mqd7aTGUrmlNir2We99.lRwXw2D7KQGzuMl15mxDVPjwAyDC','CC','Teodoroxxx@gmail.com','312256478'),(4,'Bogota','Terry','terry4','$2b$10$5YK8CghLmq3qdrzN9v1fkeOX1tRAejGCdlU/ub70kzoiuMwCqHWRq','CC','Terryxxx@gmail.com','300785141');
+INSERT INTO `clientes` VALUES (1,'Bogota','Bok','bok11','$2b$10$GZSn4zjbk6b4NWFSG.9JmuOfqhxqr7mr.Pq966OQoaU3MobyNLDnW','Cedula de ciudadania','Bokxxx@gmail.com','3002125479'),(2,'Bogota','Rosa','Rosa2','$2y$12$lyMRPA3M4uwL4lDOGEv8I.ldboFUjAku2ck3EjR2zFtIDuc5wJbpy','Cedula de Ciudadania','Rosaxxx@gmail.com','311202547'),(3,'Cundinamarca','Teodoro','teodoro3','$2b$10$aQAZ/Mqd7aTGUrmlNir2We99.lRwXw2D7KQGzuMl15mxDVPjwAyDC','CC','Teodoroxxx@gmail.com','312256478'),(4,'Bogota','Terry','terry4','$2b$10$5YK8CghLmq3qdrzN9v1fkeOX1tRAejGCdlU/ub70kzoiuMwCqHWRq','CC','Terryxxx@gmail.com','300785141'),(5,'BOGOTA D.C','Cliente numero cinco','cli5','$2b$10$JEOfDCWOnRlU1Fqh2oPmIeEeGJKWlhQRJgiwoH812zoXPRee15Neq','CC','cli5xxx@gmail.com','3124567895');
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -239,7 +239,7 @@ CREATE TABLE `motos` (
   PRIMARY KEY (`ID_MOTOS`),
   KEY `motos_ibfk_1` (`ID_CLIENTES`),
   CONSTRAINT `motos_ibfk_1` FOREIGN KEY (`ID_CLIENTES`) REFERENCES `clientes` (`ID_CLIENTES`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -248,7 +248,7 @@ CREATE TABLE `motos` (
 
 LOCK TABLES `motos` WRITE;
 /*!40000 ALTER TABLE `motos` DISABLE KEYS */;
-INSERT INTO `motos` VALUES (1,2,'BGT657','1290','DUKE','80'),(2,3,'AKT654','250','DUKE','80.000'),(3,4,'LMT564','390','DUKE','90.000'),(4,4,'BGT657','200','DUKE','30000');
+INSERT INTO `motos` VALUES (1,2,'BGT657','1290','DUKE','80'),(2,3,'AKT654','250','DUKE','80.000'),(3,4,'LMT564','390','DUKE','90.000'),(4,4,'BGT657','200','DUKE','30000'),(5,5,'MEM333','1290','DUKE','50000');
 /*!40000 ALTER TABLE `motos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -278,7 +278,7 @@ CREATE TABLE `orden_servicio` (
   CONSTRAINT `os_ibfk_2` FOREIGN KEY (`ID_ADMINISTRADOR`) REFERENCES `administradores` (`ID_ADMINISTRADOR`) ON DELETE CASCADE,
   CONSTRAINT `os_ibfk_3` FOREIGN KEY (`ID_TECNICOS`) REFERENCES `tecnicos` (`ID_TECNICOS`) ON DELETE CASCADE,
   CONSTRAINT `os_ibfk_4` FOREIGN KEY (`ID_MOTOS`) REFERENCES `motos` (`ID_MOTOS`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -388,4 +388,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-06-01 14:23:18
+-- Dump completed on 2026-06-05 11:43:04
