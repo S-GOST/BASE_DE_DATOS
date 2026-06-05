@@ -97,12 +97,14 @@ select * from comprobante;
 select * from historial;
 
 ALTER TABLE motos AUTO_INCREMENT = 5;
+ALTER TABLE orden_servicio AUTO_INCREMENT = 5;
 
 
 /* Datos insertados */
 delete from motos where ID_MOTOS = '9';
 delete from clientes where ID_CLIENTES = '9';
 delete from tecnicos where ID_TECNICOS = 'TEC1';
+delete from orden_servicio where ID_ORDEN_SERVICIO = '7';
 insert into administradores(Nombre,Correo,Contrasena,Telefono)values('Alejo','Alejopxxx@gmail.com','5469871','325586787');
 insert into clientes(Ubicacion,Nombre,TipoDocumento,Correo,Telefono)values('Cundinamarca','Bok','Cedula de ciudadania','Terryxxx@gmail.com','300586787');
 insert into tecnicos(Nombre,Correo,Contrasena,Telefono)values('Santiago','Santiagoxxx@gmail.com','5471256','312425462');
