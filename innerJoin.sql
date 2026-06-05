@@ -96,9 +96,12 @@ select * from informe;
 select * from comprobante;
 select * from historial;
 
+ALTER TABLE motos AUTO_INCREMENT = 5;
+
 
 /* Datos insertados */
-delete from clientes where ID_CLIENTES = 'CLI_TEST';
+delete from motos where ID_MOTOS = '9';
+delete from clientes where ID_CLIENTES = '9';
 delete from tecnicos where ID_TECNICOS = 'TEC1';
 insert into administradores(Nombre,Correo,Contrasena,Telefono)values('Alejo','Alejopxxx@gmail.com','5469871','325586787');
 insert into clientes(Ubicacion,Nombre,TipoDocumento,Correo,Telefono)values('Cundinamarca','Bok','Cedula de ciudadania','Terryxxx@gmail.com','300586787');
