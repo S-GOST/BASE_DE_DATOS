@@ -98,13 +98,15 @@ select * from historial;
 
 ALTER TABLE motos AUTO_INCREMENT = 5;
 ALTER TABLE orden_servicio AUTO_INCREMENT = 5;
+ALTER TABLE detalles_orden_servicio AUTO_INCREMENT = 5;
 
 
 /* Datos insertados */
 delete from motos where ID_MOTOS = '9';
 delete from clientes where ID_CLIENTES = '9';
 delete from tecnicos where ID_TECNICOS = 'TEC1';
-delete from orden_servicio where ID_ORDEN_SERVICIO = '7';
+delete from orden_servicio where ID_ORDEN_SERVICIO = '5';
+delete from detalles_orden_servicio where ID_DETALLES_ORDEN_SERVICIO = '5';
 insert into administradores(Nombre,Correo,Contrasena,Telefono)values('Alejo','Alejopxxx@gmail.com','5469871','325586787');
 insert into clientes(Ubicacion,Nombre,TipoDocumento,Correo,Telefono)values('Cundinamarca','Bok','Cedula de ciudadania','Terryxxx@gmail.com','300586787');
 insert into tecnicos(Nombre,Correo,Contrasena,Telefono)values('Santiago','Santiagoxxx@gmail.com','5471256','312425462');
@@ -128,6 +130,9 @@ UPDATE administradores
 SET contrasena = '$2y$12$KhPINZBURPa1BunW6gOBuuFQpjK6WJHcXZGeVNxJ4T6UX/dwCrj8u'
 WHERE usuario = 'admi2';
 
+ALTER TABLE detalles_orden_servicio MODIFY COLUMN ID_SERVICIOS INT NULL;
+
+ALTER TABLE detalles_orden_servicio MODIFY COLUMN ID_PRODUCTOS INT NULL;
 
 SELECT 
   dos.ID_DETALLES_ORDEN_SERVICIO,
