@@ -65,7 +65,7 @@ CREATE TABLE `clientes` (
   `Telefono` varchar(20) NOT NULL,
   PRIMARY KEY (`ID_CLIENTES`),
   UNIQUE KEY `usuario` (`usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -74,7 +74,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-INSERT INTO `clientes` VALUES (1,'Bogota','Bok','bok11','$2b$10$GZSn4zjbk6b4NWFSG.9JmuOfqhxqr7mr.Pq966OQoaU3MobyNLDnW','Cedula de ciudadania','Bokxxx@gmail.com','3002125479'),(2,'Bogota','Rosa','Rosa2','$2y$12$lyMRPA3M4uwL4lDOGEv8I.ldboFUjAku2ck3EjR2zFtIDuc5wJbpy','Cedula de Ciudadania','Rosaxxx@gmail.com','311202547'),(3,'Cundinamarca','Teodoro','teodoro3','$2b$10$aQAZ/Mqd7aTGUrmlNir2We99.lRwXw2D7KQGzuMl15mxDVPjwAyDC','CC','Teodoroxxx@gmail.com','312256478'),(4,'Bogota','Terry','terry4','$2b$10$5YK8CghLmq3qdrzN9v1fkeOX1tRAejGCdlU/ub70kzoiuMwCqHWRq','CC','Terryxxx@gmail.com','300785141'),(5,'BOGOTA D.C','Cliente numero cinco','cli5','$2b$10$JEOfDCWOnRlU1Fqh2oPmIeEeGJKWlhQRJgiwoH812zoXPRee15Neq','CC','cli5xxx@gmail.com','3124567895');
+INSERT INTO `clientes` VALUES (1,'Bogota D.C','User Cliente nuevo','user','$2b$10$2tavQabXiHOrBK2jrfHD/eZoGs0UMUdk7.pYmht/Dz15pPEQBqS5G','CC','userxxx@gmail.com','3124567891'),(2,'Bogota D.C','usuario numero dos','usuario2','$2b$10$GcwXhXLUhg9cnvQ7X4dOkuYqPvlohq0lTfBOatketE5C5PH5nJOpW','CC','usuario2@gmai.com','3124567891'),(3,'BOGOTA D.C','CLIENTE TRE','cli3','$2b$10$Hk4Ou4nSDXrA6BafuWsNkO27exwdl2vfrzwpEbxI2djzdKQGl71M2','CC','cli3xxx@gmail.com','3123456789');
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -109,7 +109,6 @@ CREATE TABLE `comprobante` (
 
 LOCK TABLES `comprobante` WRITE;
 /*!40000 ALTER TABLE `comprobante` DISABLE KEYS */;
-INSERT INTO `comprobante` VALUES (1,1,2,1,'500','2025-05-20 00:00:00','Pendiente'),(2,2,2,2,'700','2025-05-02 00:00:00','Pagado'),(3,3,3,3,'500000','2026-05-27 00:00:00','Pendiente'),(4,4,4,4,'500000','2026-05-27 00:00:00','Pendiente');
 /*!40000 ALTER TABLE `comprobante` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -134,7 +133,7 @@ CREATE TABLE `detalles_orden_servicio` (
   CONSTRAINT `dos_ibfk_1` FOREIGN KEY (`ID_ORDEN_SERVICIO`) REFERENCES `orden_servicio` (`ID_ORDEN_SERVICIO`) ON DELETE CASCADE,
   CONSTRAINT `dos_ibfk_2` FOREIGN KEY (`ID_SERVICIOS`) REFERENCES `servicios` (`ID_SERVICIOS`) ON DELETE CASCADE,
   CONSTRAINT `dos_ibfk_3` FOREIGN KEY (`ID_PRODUCTOS`) REFERENCES `productos` (`ID_PRODUCTOS`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -143,7 +142,7 @@ CREATE TABLE `detalles_orden_servicio` (
 
 LOCK TABLES `detalles_orden_servicio` WRITE;
 /*!40000 ALTER TABLE `detalles_orden_servicio` DISABLE KEYS */;
-INSERT INTO `detalles_orden_servicio` VALUES (1,1,1,1,'0',600.00),(2,2,2,2,'30',200.00),(3,3,2,3,'20',200000.00),(4,4,2,4,'20',200000.00);
+INSERT INTO `detalles_orden_servicio` VALUES (1,1,1,1,'30',500.00),(2,2,2,2,'20',400.00);
 /*!40000 ALTER TABLE `detalles_orden_servicio` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -183,7 +182,6 @@ CREATE TABLE `historial` (
 
 LOCK TABLES `historial` WRITE;
 /*!40000 ALTER TABLE `historial` DISABLE KEYS */;
-INSERT INTO `historial` VALUES (1,1,1,1,1,1,'Historial orden de servicio numero 1','2025-05-20 00:00:00'),(2,2,2,2,2,2,'historial orden servicio numero 2','2025-05-20 00:00:00'),(3,3,3,3,3,3,'3','2023-06-02 00:00:00'),(4,4,4,4,4,4,'4','2026-06-05 00:00:00');
 /*!40000 ALTER TABLE `historial` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -209,7 +207,7 @@ CREATE TABLE `informe` (
   CONSTRAINT `inf_ibfk_1` FOREIGN KEY (`ID_DETALLES_ORDEN_SERVICIO`) REFERENCES `detalles_orden_servicio` (`ID_DETALLES_ORDEN_SERVICIO`) ON DELETE CASCADE,
   CONSTRAINT `inf_ibfk_2` FOREIGN KEY (`ID_ADMINISTRADOR`) REFERENCES `administradores` (`ID_ADMINISTRADOR`) ON DELETE CASCADE,
   CONSTRAINT `inf_ibfk_3` FOREIGN KEY (`ID_TECNICOS`) REFERENCES `tecnicos` (`ID_TECNICOS`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -218,7 +216,7 @@ CREATE TABLE `informe` (
 
 LOCK TABLES `informe` WRITE;
 /*!40000 ALTER TABLE `informe` DISABLE KEYS */;
-INSERT INTO `informe` VALUES (1,1,1,2,'informe orden de servicio 1','2025-02-05 00:00:00','En espera de repuest'),(2,2,2,1,'informe orden de servicio numero 1','2025-05-26 00:00:00','Pendiente'),(3,3,3,1,'informe numero 3','2026-05-15 00:00:00','Pendiente'),(4,4,4,4,'INFORME # 4','2026-05-15 00:00:00','Completado');
+INSERT INTO `informe` VALUES (1,1,1,1,'INFORME NUMERO 1','2026-06-10 00:00:00','Pendiente'),(2,2,2,2,'INFORME NUMEOR 2','2026-06-10 00:00:00','Pendiente');
 /*!40000 ALTER TABLE `informe` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -248,7 +246,7 @@ CREATE TABLE `motos` (
 
 LOCK TABLES `motos` WRITE;
 /*!40000 ALTER TABLE `motos` DISABLE KEYS */;
-INSERT INTO `motos` VALUES (1,2,'BGT657','1290','DUKE','80'),(2,3,'AKT654','250','DUKE','80.000'),(3,4,'LMT564','390','DUKE','90.000'),(4,4,'BGT657','200','DUKE','30000'),(5,5,'MEM333','1290','DUKE','50000');
+INSERT INTO `motos` VALUES (1,1,'BGT657','200','DUKE','120000'),(2,2,'BGT657','1290','DUKE','150000');
 /*!40000 ALTER TABLE `motos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -278,7 +276,7 @@ CREATE TABLE `orden_servicio` (
   CONSTRAINT `os_ibfk_2` FOREIGN KEY (`ID_ADMINISTRADOR`) REFERENCES `administradores` (`ID_ADMINISTRADOR`) ON DELETE CASCADE,
   CONSTRAINT `os_ibfk_3` FOREIGN KEY (`ID_TECNICOS`) REFERENCES `tecnicos` (`ID_TECNICOS`) ON DELETE CASCADE,
   CONSTRAINT `os_ibfk_4` FOREIGN KEY (`ID_MOTOS`) REFERENCES `motos` (`ID_MOTOS`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -287,7 +285,7 @@ CREATE TABLE `orden_servicio` (
 
 LOCK TABLES `orden_servicio` WRITE;
 /*!40000 ALTER TABLE `orden_servicio` DISABLE KEYS */;
-INSERT INTO `orden_servicio` VALUES (1,1,1,1,1,'2025-11-05 14:42:00','2025-11-15 15:20:00','2025-11-20 13:10:00','Finalizada'),(2,2,2,2,2,'2025-11-05 14:42:00','2025-11-05 14:42:00','2025-11-05 14:42:00','Pendiente'),(3,3,3,3,3,'2026-05-08 00:00:00','2026-05-09 00:00:00','2026-05-11 00:00:00','Pendiente'),(4,4,4,4,4,'2026-05-12 00:00:00','2026-05-13 00:00:00','2026-05-16 00:00:00','Pendiente'),(5,5,1,1,5,'2026-06-05 17:13:22','2026-06-06 17:13:22','2026-06-05 17:13:22','PENDIENTE');
+INSERT INTO `orden_servicio` VALUES (1,1,1,1,1,'2026-06-10 00:00:00','2026-06-11 00:00:00','2026-06-13 00:00:00','Pendiente'),(2,2,2,2,2,'2026-06-15 00:00:00','2026-06-16 00:00:00','2026-06-17 00:00:00','En Proceso');
 /*!40000 ALTER TABLE `orden_servicio` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -317,7 +315,7 @@ CREATE TABLE `productos` (
 
 LOCK TABLES `productos` WRITE;
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
-INSERT INTO `productos` VALUES (1,'Lubricantes y refrigerantes','Motorex','Aceite','35',120000.00,8,'Disponibles'),(2,'Accesorios','Rombo','Cadena','30',180000.00,5,'Disponibles'),(3,'Accesorios','Minda','Direccionales','10',149999.98,15,'Disponibles'),(4,'Accesorios','DUKE','CHAQUETA ROCKET','20',179999.99,1,'Disponibles');
+INSERT INTO `productos` VALUES (1,'Lubricantes y refrigerantes','Motorex','Aceite','2',120000.00,8,'Disponibles'),(2,'Accesorios','Rombo','Cadena','30',180000.00,5,'Disponibles'),(3,'Accesorios','Minda','Direccionales','10',150000.00,15,'Disponibles'),(4,'Accesorios','DUKE','CHAQUETA ROCKET','20',170000.00,1,'Disponibles');
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -345,7 +343,7 @@ CREATE TABLE `servicios` (
 
 LOCK TABLES `servicios` WRITE;
 /*!40000 ALTER TABLE `servicios` DISABLE KEYS */;
-INSERT INTO `servicios` VALUES (1,'Mantenimiento preventivo','Mantenimientos','30','No disponible','180'),(2,'Reparacion por daños','Reparaciones','30','Disponible','200.000'),(3,'Instalaciones de accesorios','Instalaciones','14','Disponible','300.000'),(4,'Diagnosticos motor','Diagnosticos','10','Disponible','600.000');
+INSERT INTO `servicios` VALUES (1,'Mantenimiento preventivo','Mantenimientos','100','No disponible','212000'),(2,'Reparacion por daños','Reparaciones','30','Disponible','200000'),(3,'Instalaciones de accesorios','Instalaciones','14','Disponible','300000'),(4,'Diagnosticos motor','Diagnosticos','10','Disponible','600000');
 /*!40000 ALTER TABLE `servicios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -388,4 +386,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-06-05 12:16:26
+-- Dump completed on 2026-06-10 12:19:29
