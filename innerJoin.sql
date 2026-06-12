@@ -104,6 +104,7 @@ ALTER TABLE informe AUTO_INCREMENT = 1;
 
 
 /* Datos insertados */
+delete from administradores where ID_ADMINISTRADOR = '6';
 delete from motos where ID_MOTOS = '6';
 delete from clientes where ID_CLIENTES = '6';
 delete from tecnicos where ID_TECNICOS = 'TEC1';
