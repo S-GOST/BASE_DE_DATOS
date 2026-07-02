@@ -65,7 +65,7 @@ CREATE TABLE `clientes` (
   `Telefono` varchar(20) NOT NULL,
   PRIMARY KEY (`ID_CLIENTES`),
   UNIQUE KEY `usuario` (`usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -74,7 +74,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-INSERT INTO `clientes` VALUES (1,'Bogota D.C','User Cliente nuevo','user','$2b$10$2tavQabXiHOrBK2jrfHD/eZoGs0UMUdk7.pYmht/Dz15pPEQBqS5G','CC','userxxx@gmail.com','3124567891'),(2,'Bogota D.C','usuario numero dos','usuario2','$2b$10$GcwXhXLUhg9cnvQ7X4dOkuYqPvlohq0lTfBOatketE5C5PH5nJOpW','CC','usuario2@gmai.com','3124567891'),(3,'BOGOTA D.C','CLIENTE TRE','cli3','$2b$10$Hk4Ou4nSDXrA6BafuWsNkO27exwdl2vfrzwpEbxI2djzdKQGl71M2','CC','cli3xxx@gmail.com','3123456789'),(4,'Bogota','cliente numero 4','cli4','$2b$10$sbu7QB.OUMKegK2XQsOtSuWTc6wiD/3VAzhzEo2fKyYXTl/h.vKTK','CC','cli4xxxx@gmail.com','321564891');
+INSERT INTO `clientes` VALUES (1,'Bogota D.C','User Cliente nuevo','user','$2b$10$2tavQabXiHOrBK2jrfHD/eZoGs0UMUdk7.pYmht/Dz15pPEQBqS5G','CC','userxxx@gmail.com','3124567891'),(2,'Bogota D.C','usuario numero dos','usuario2','$2b$10$GcwXhXLUhg9cnvQ7X4dOkuYqPvlohq0lTfBOatketE5C5PH5nJOpW','CC','usuario2@gmai.com','3124567891'),(3,'BOGOTA D.C','CLIENTE TRE','cli3','$2b$10$Hk4Ou4nSDXrA6BafuWsNkO27exwdl2vfrzwpEbxI2djzdKQGl71M2','CC','cli3xxx@gmail.com','3123456789'),(4,'Bogota','cliente numero 4','cli4','$2b$10$sbu7QB.OUMKegK2XQsOtSuWTc6wiD/3VAzhzEo2fKyYXTl/h.vKTK','CC','cli4xxxx@gmail.com','321564891'),(5,'Bogota D.C','Nuevo cliente numero 5','cli5','$2b$10$WcFR7Y1Xgg4Q6ARmMbToOOpG4ao0pElgb157RBM1Q68QVpC.Pkk4i','CC','vli5xxx@gmail.com','320245698');
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -133,7 +133,7 @@ CREATE TABLE `detalles_orden_servicio` (
   CONSTRAINT `dos_ibfk_1` FOREIGN KEY (`ID_ORDEN_SERVICIO`) REFERENCES `orden_servicio` (`ID_ORDEN_SERVICIO`) ON DELETE CASCADE,
   CONSTRAINT `dos_ibfk_2` FOREIGN KEY (`ID_SERVICIOS`) REFERENCES `servicios` (`ID_SERVICIOS`) ON DELETE CASCADE,
   CONSTRAINT `dos_ibfk_3` FOREIGN KEY (`ID_PRODUCTOS`) REFERENCES `productos` (`ID_PRODUCTOS`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -142,7 +142,7 @@ CREATE TABLE `detalles_orden_servicio` (
 
 LOCK TABLES `detalles_orden_servicio` WRITE;
 /*!40000 ALTER TABLE `detalles_orden_servicio` DISABLE KEYS */;
-INSERT INTO `detalles_orden_servicio` VALUES (1,1,3,3,'14',450000.00),(2,2,1,1,'100',332000.00),(3,3,3,4,'20',470000.00),(4,4,4,3,'10',750000.00),(5,5,2,2,'30',380000.00);
+INSERT INTO `detalles_orden_servicio` VALUES (1,1,3,3,'14',450000.00),(2,2,1,1,'100',332000.00),(3,3,3,4,'20',470000.00),(4,4,4,3,'10',750000.00),(5,5,2,2,'30',380000.00),(6,6,1,1,'100',332000.00);
 /*!40000 ALTER TABLE `detalles_orden_servicio` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -245,7 +245,7 @@ CREATE TABLE `motos` (
 
 LOCK TABLES `motos` WRITE;
 /*!40000 ALTER TABLE `motos` DISABLE KEYS */;
-INSERT INTO `motos` VALUES (1,1,'BGT657','200','DUKE','120000'),(2,2,'BGT657','1290','DUKE','150000'),(3,3,'DFH360','390','DUKE','30000'),(4,4,'DFH360','390','DUKE','30000');
+INSERT INTO `motos` VALUES (1,1,'BGT657','200','DUKE','120000'),(2,2,'BGT657','1290','DUKE','150000'),(3,3,'DFH360','390','DUKE','30000'),(4,4,'DFH360','390','DUKE','30000'),(5,5,'DFG546','390','DUKE','50000'),(6,1,'NUE250','390','DUKE','60000');
 /*!40000 ALTER TABLE `motos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -275,7 +275,7 @@ CREATE TABLE `orden_servicio` (
   CONSTRAINT `os_ibfk_2` FOREIGN KEY (`ID_ADMINISTRADOR`) REFERENCES `administradores` (`ID_ADMINISTRADOR`) ON DELETE CASCADE,
   CONSTRAINT `os_ibfk_3` FOREIGN KEY (`ID_TECNICOS`) REFERENCES `tecnicos` (`ID_TECNICOS`) ON DELETE CASCADE,
   CONSTRAINT `os_ibfk_4` FOREIGN KEY (`ID_MOTOS`) REFERENCES `motos` (`ID_MOTOS`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -284,7 +284,7 @@ CREATE TABLE `orden_servicio` (
 
 LOCK TABLES `orden_servicio` WRITE;
 /*!40000 ALTER TABLE `orden_servicio` DISABLE KEYS */;
-INSERT INTO `orden_servicio` VALUES (1,1,1,1,1,'2026-06-27 01:43:22','2026-06-28 01:43:22',NULL,'PENDIENTE'),(2,1,1,1,1,'2026-06-27 02:04:19','2026-06-28 02:04:19',NULL,'PENDIENTE'),(3,3,1,1,3,'2026-06-27 03:37:11','2026-06-28 03:37:11',NULL,'PENDIENTE'),(4,3,1,1,3,'2026-06-27 03:59:21','2026-06-28 03:59:21',NULL,'PENDIENTE'),(5,1,1,1,1,'2026-06-27 05:26:38','2026-06-28 05:26:38',NULL,'PENDIENTE');
+INSERT INTO `orden_servicio` VALUES (1,1,1,1,1,'2026-06-27 01:43:22','2026-06-28 01:43:22',NULL,'PENDIENTE'),(2,1,1,1,1,'2026-06-27 02:04:19','2026-06-28 02:04:19',NULL,'PENDIENTE'),(3,3,1,1,3,'2026-06-27 03:37:11','2026-06-28 03:37:11',NULL,'PENDIENTE'),(4,3,1,1,3,'2026-06-27 03:59:21','2026-06-28 03:59:21',NULL,'PENDIENTE'),(5,1,1,1,1,'2026-06-27 05:26:38','2026-06-28 05:26:38',NULL,'PENDIENTE'),(6,1,1,1,6,'2026-07-02 01:46:51','2026-07-03 01:46:51',NULL,'PENDIENTE');
 /*!40000 ALTER TABLE `orden_servicio` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -385,4 +385,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-06-27  0:34:57
+-- Dump completed on 2026-07-01 20:50:54
