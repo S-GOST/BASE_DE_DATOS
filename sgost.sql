@@ -18,64 +18,29 @@ USE `sgost`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `administradores`
+-- Table structure for table `categorias`
 --
 
-DROP TABLE IF EXISTS `administradores`;
+DROP TABLE IF EXISTS `categorias`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `administradores` (
-  `ID_ADMINISTRADOR` int(11) NOT NULL AUTO_INCREMENT,
-  `Nombre` varchar(100) NOT NULL,
-  `usuario` varchar(100) DEFAULT NULL,
-  `contrasena` varchar(255) DEFAULT NULL,
-  `Correo` varchar(100) NOT NULL,
-  `TipoDocumento` varchar(100) NOT NULL,
-  `Telefono` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`ID_ADMINISTRADOR`),
-  UNIQUE KEY `usuario` (`usuario`)
+CREATE TABLE `categorias` (
+  `ID_CATEGORIA` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(100) NOT NULL,
+  `tipo` enum('PRODUCTO','SERVICIO') NOT NULL,
+  `descripcion` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`ID_CATEGORIA`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `administradores`
+-- Dumping data for table `categorias`
 --
 
-LOCK TABLES `administradores` WRITE;
-/*!40000 ALTER TABLE `administradores` DISABLE KEYS */;
-INSERT INTO `administradores` VALUES (1,'juan Parra','Admi1','$2b$10$gyxexy5Rpmbc82uQRXZ0K.5sIrZnEJfJHn5YcsgnUX1CmGU76Qy4K','Juanpxxx@gmail.com','Cedula de ciudadania','3174569855'),(2,'Alejo','Admi2','$2b$10$/qs04UGhpdaVvbaL2D0Ik.2E9F2rDTJKTvYkxZgy6rTdd3V9KkO.m','Alejoxxx@gmail.com','Cedula de ciudadania','3124567891'),(3,'Administrador numero 3','Admi3','$2b$10$1sCXQYJjhnnNmNOqt5rXGuLK.2OPN2B3XdpskNKLtEHHv4H7c/ZyW','administradornumerTres@gmail.com','Cedula de ciudadania','3124567891'),(4,'Administrador numero 4','Admi4','$2b$10$5meC508xnDPX5GptfhRX7e4huNXrxB6XMWKkEgDUhCOuUJzTqw56K','administradornumer4@gmail.com','Cedula de extranjeria','3124567891');
-/*!40000 ALTER TABLE `administradores` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `clientes`
---
-
-DROP TABLE IF EXISTS `clientes`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `clientes` (
-  `ID_CLIENTES` int(11) NOT NULL AUTO_INCREMENT,
-  `Ubicacion` varchar(40) DEFAULT NULL,
-  `Nombre` varchar(100) NOT NULL,
-  `usuario` varchar(100) DEFAULT NULL,
-  `contrasena` varchar(255) DEFAULT NULL,
-  `TipoDocumento` varchar(45) NOT NULL,
-  `Correo` varchar(100) NOT NULL,
-  `Telefono` varchar(20) NOT NULL,
-  PRIMARY KEY (`ID_CLIENTES`),
-  UNIQUE KEY `usuario` (`usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `clientes`
---
-
-LOCK TABLES `clientes` WRITE;
-/*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-INSERT INTO `clientes` VALUES (1,'Bogota D.C','User Cliente nuevo','user','$2b$10$2tavQabXiHOrBK2jrfHD/eZoGs0UMUdk7.pYmht/Dz15pPEQBqS5G','CC','userxxx@gmail.com','3124567891'),(2,'Bogota D.C','usuario numero dos','usuario2','$2b$10$GcwXhXLUhg9cnvQ7X4dOkuYqPvlohq0lTfBOatketE5C5PH5nJOpW','CC','usuario2@gmai.com','3124567891'),(3,'BOGOTA D.C','CLIENTE TRE','cli3','$2b$10$Hk4Ou4nSDXrA6BafuWsNkO27exwdl2vfrzwpEbxI2djzdKQGl71M2','CC','cli3xxx@gmail.com','3123456789'),(4,'Bogota','cliente numero 4','cli4','$2b$10$sbu7QB.OUMKegK2XQsOtSuWTc6wiD/3VAzhzEo2fKyYXTl/h.vKTK','CC','cli4xxxx@gmail.com','321564891'),(5,'Bogota D.C','Nuevo cliente numero 5','cli5','$2b$10$WcFR7Y1Xgg4Q6ARmMbToOOpG4ao0pElgb157RBM1Q68QVpC.Pkk4i','CC','vli5xxx@gmail.com','320245698');
-/*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
+LOCK TABLES `categorias` WRITE;
+/*!40000 ALTER TABLE `categorias` DISABLE KEYS */;
+INSERT INTO `categorias` VALUES (1,'Lubricantes y refrigerantes','PRODUCTO','Productos para mantenimientos del vehiculo'),(2,'Accesorios','PRODUCTO','Accesorios para motocicletas ktm Duke'),(3,'Mantenimientos','SERVICIO','Servicios preventivos'),(4,'Reparaciones','SERVICIO','Servicios correctivos'),(5,'Instalaciones','SERVICIO','Instalación de accesorios'),(6,'Diagnósticos','SERVICIO','Diagnóstico de las motos');
+/*!40000 ALTER TABLE `categorias` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -86,21 +51,19 @@ DROP TABLE IF EXISTS `comprobante`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `comprobante` (
-  `ID_COMPROBANTE` int(11) NOT NULL AUTO_INCREMENT,
-  `ID_INFORME` int(11) DEFAULT NULL,
-  `ID_CLIENTES` int(11) NOT NULL,
-  `ID_ADMINISTRADOR` int(11) NOT NULL,
-  `Monto` varchar(100) NOT NULL,
-  `Fecha` datetime NOT NULL,
-  `Estado_pago` varchar(20) NOT NULL,
-  PRIMARY KEY (`ID_COMPROBANTE`),
-  KEY `comp_ibfk_1` (`ID_INFORME`),
-  KEY `comp_ibfk_2` (`ID_CLIENTES`),
-  KEY `comp_ibfk_3` (`ID_ADMINISTRADOR`),
-  CONSTRAINT `comp_ibfk_1` FOREIGN KEY (`ID_INFORME`) REFERENCES `informe` (`ID_INFORME`) ON DELETE CASCADE,
-  CONSTRAINT `comp_ibfk_2` FOREIGN KEY (`ID_CLIENTES`) REFERENCES `clientes` (`ID_CLIENTES`) ON DELETE CASCADE,
-  CONSTRAINT `comp_ibfk_3` FOREIGN KEY (`ID_ADMINISTRADOR`) REFERENCES `administradores` (`ID_ADMINISTRADOR`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `id_comprobante` int(11) NOT NULL AUTO_INCREMENT,
+  `id_orden` int(11) NOT NULL,
+  `numero_comprobante` varchar(30) NOT NULL,
+  `fecha` datetime DEFAULT current_timestamp(),
+  `subtotal` decimal(10,2) NOT NULL,
+  `total_pagar` decimal(10,2) NOT NULL,
+  `metodo_pago` enum('Efectivo','Nequi','Daviplata','Transferencia','Tarjeta') NOT NULL,
+  `estado` enum('Pendiente','Pagado','Anulado') DEFAULT 'Pendiente',
+  PRIMARY KEY (`id_comprobante`),
+  UNIQUE KEY `numero_comprobante` (`numero_comprobante`),
+  KEY `id_orden` (`id_orden`),
+  CONSTRAINT `fk_comprobante_orden` FOREIGN KEY (`id_orden`) REFERENCES `orden_servicio` (`id_orden`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -120,20 +83,22 @@ DROP TABLE IF EXISTS `detalles_orden_servicio`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `detalles_orden_servicio` (
-  `ID_DETALLES_ORDEN_SERVICIO` int(11) NOT NULL AUTO_INCREMENT,
-  `ID_ORDEN_SERVICIO` int(11) NOT NULL,
-  `ID_SERVICIOS` int(11) DEFAULT NULL,
+  `id_detalle` int(11) NOT NULL AUTO_INCREMENT,
+  `id_orden` int(11) NOT NULL,
   `ID_PRODUCTOS` int(11) DEFAULT NULL,
-  `Garantia` varchar(100) NOT NULL,
-  `Precio` decimal(10,2) NOT NULL,
-  PRIMARY KEY (`ID_DETALLES_ORDEN_SERVICIO`),
-  KEY `dos_ibfk_1` (`ID_ORDEN_SERVICIO`),
-  KEY `dos_ibfk_2` (`ID_SERVICIOS`),
-  KEY `dos_ibfk_3` (`ID_PRODUCTOS`),
-  CONSTRAINT `dos_ibfk_1` FOREIGN KEY (`ID_ORDEN_SERVICIO`) REFERENCES `orden_servicio` (`ID_ORDEN_SERVICIO`) ON DELETE CASCADE,
-  CONSTRAINT `dos_ibfk_2` FOREIGN KEY (`ID_SERVICIOS`) REFERENCES `servicios` (`ID_SERVICIOS`) ON DELETE CASCADE,
-  CONSTRAINT `dos_ibfk_3` FOREIGN KEY (`ID_PRODUCTOS`) REFERENCES `productos` (`ID_PRODUCTOS`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `ID_SERVICIOS` int(11) DEFAULT NULL,
+  `cantidad` int(11) DEFAULT 1,
+  `garantia` int(11) DEFAULT NULL,
+  `precio_unitario` decimal(10,2) DEFAULT NULL,
+  `subtotal` decimal(10,2) DEFAULT NULL,
+  PRIMARY KEY (`id_detalle`),
+  KEY `id_orden` (`id_orden`),
+  KEY `ID_PRODUCTOS` (`ID_PRODUCTOS`),
+  KEY `ID_SERVICIOS` (`ID_SERVICIOS`),
+  CONSTRAINT `detalles_orden_servicio_ibfk_2` FOREIGN KEY (`ID_PRODUCTOS`) REFERENCES `productos` (`ID_PRODUCTOS`),
+  CONSTRAINT `detalles_orden_servicio_ibfk_3` FOREIGN KEY (`ID_SERVICIOS`) REFERENCES `servicios` (`ID_SERVICIOS`),
+  CONSTRAINT `fk_detalle_orden` FOREIGN KEY (`id_orden`) REFERENCES `orden_servicio` (`id_orden`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -142,7 +107,6 @@ CREATE TABLE `detalles_orden_servicio` (
 
 LOCK TABLES `detalles_orden_servicio` WRITE;
 /*!40000 ALTER TABLE `detalles_orden_servicio` DISABLE KEYS */;
-INSERT INTO `detalles_orden_servicio` VALUES (1,1,3,3,'14',450000.00),(2,2,1,1,'100',332000.00),(3,3,3,4,'20',470000.00),(4,4,4,3,'10',750000.00),(5,5,2,2,'30',380000.00),(6,6,1,1,'100',332000.00);
 /*!40000 ALTER TABLE `detalles_orden_servicio` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -154,26 +118,17 @@ DROP TABLE IF EXISTS `historial`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `historial` (
-  `ID_HISTORIAL` int(11) NOT NULL AUTO_INCREMENT,
-  `ID_ORDEN_SERVICIO` int(11) NOT NULL,
-  `ID_COMPROBANTE` int(11) NOT NULL,
-  `ID_INFORME` int(11) NOT NULL,
-  `ID_TECNICOS` int(11) NOT NULL,
-  `ID_CLIENTES` int(11) NOT NULL,
-  `Descripcion` varchar(200) NOT NULL,
-  `Fecha_registro` datetime NOT NULL,
-  PRIMARY KEY (`ID_HISTORIAL`),
-  KEY `hist_ibfk_1` (`ID_ORDEN_SERVICIO`),
-  KEY `hist_ibfk_2` (`ID_COMPROBANTE`),
-  KEY `hist_ibfk_3` (`ID_INFORME`),
-  KEY `hist_ibfk_4` (`ID_TECNICOS`),
-  KEY `hist_ibfk_5` (`ID_CLIENTES`),
-  CONSTRAINT `hist_ibfk_1` FOREIGN KEY (`ID_ORDEN_SERVICIO`) REFERENCES `orden_servicio` (`ID_ORDEN_SERVICIO`) ON DELETE CASCADE,
-  CONSTRAINT `hist_ibfk_2` FOREIGN KEY (`ID_COMPROBANTE`) REFERENCES `comprobante` (`ID_COMPROBANTE`) ON DELETE CASCADE,
-  CONSTRAINT `hist_ibfk_3` FOREIGN KEY (`ID_INFORME`) REFERENCES `informe` (`ID_INFORME`) ON DELETE CASCADE,
-  CONSTRAINT `hist_ibfk_4` FOREIGN KEY (`ID_TECNICOS`) REFERENCES `tecnicos` (`ID_TECNICOS`) ON DELETE CASCADE,
-  CONSTRAINT `hist_ibfk_5` FOREIGN KEY (`ID_CLIENTES`) REFERENCES `clientes` (`ID_CLIENTES`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `id_historial` int(11) NOT NULL AUTO_INCREMENT,
+  `id_usuario` int(11) NOT NULL,
+  `tabla_afectada` varchar(50) NOT NULL,
+  `id_registro` int(11) NOT NULL,
+  `accion` enum('INSERT','UPDATE','DELETE','LOGIN','LOGOUT') NOT NULL,
+  `descripcion` text DEFAULT NULL,
+  `fecha` datetime DEFAULT current_timestamp(),
+  PRIMARY KEY (`id_historial`),
+  KEY `id_usuario` (`id_usuario`),
+  CONSTRAINT `historial_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -193,21 +148,19 @@ DROP TABLE IF EXISTS `informe`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `informe` (
-  `ID_INFORME` int(11) NOT NULL AUTO_INCREMENT,
-  `ID_DETALLES_ORDEN_SERVICIO` int(11) NOT NULL,
-  `ID_ADMINISTRADOR` int(11) NOT NULL,
-  `ID_TECNICOS` int(11) NOT NULL,
-  `Descripcion` varchar(200) NOT NULL,
-  `Fecha` datetime NOT NULL,
-  `Estado` varchar(20) NOT NULL,
-  PRIMARY KEY (`ID_INFORME`),
-  KEY `inf_ibfk_1` (`ID_DETALLES_ORDEN_SERVICIO`),
-  KEY `inf_ibfk_2` (`ID_ADMINISTRADOR`),
-  KEY `inf_ibfk_3` (`ID_TECNICOS`),
-  CONSTRAINT `inf_ibfk_1` FOREIGN KEY (`ID_DETALLES_ORDEN_SERVICIO`) REFERENCES `detalles_orden_servicio` (`ID_DETALLES_ORDEN_SERVICIO`) ON DELETE CASCADE,
-  CONSTRAINT `inf_ibfk_2` FOREIGN KEY (`ID_ADMINISTRADOR`) REFERENCES `administradores` (`ID_ADMINISTRADOR`) ON DELETE CASCADE,
-  CONSTRAINT `inf_ibfk_3` FOREIGN KEY (`ID_TECNICOS`) REFERENCES `tecnicos` (`ID_TECNICOS`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `id_informe` int(11) NOT NULL AUTO_INCREMENT,
+  `id_orden` int(11) NOT NULL,
+  `id_tecnico` int(11) NOT NULL,
+  `diagnostico` text DEFAULT NULL,
+  `trabajo_realizado` text DEFAULT NULL,
+  `recomendaciones` text DEFAULT NULL,
+  `fecha` datetime DEFAULT current_timestamp(),
+  PRIMARY KEY (`id_informe`),
+  KEY `id_orden` (`id_orden`),
+  KEY `id_tecnico` (`id_tecnico`),
+  CONSTRAINT `fk_informe_orden` FOREIGN KEY (`id_orden`) REFERENCES `orden_servicio` (`id_orden`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `informe_ibfk_2` FOREIGN KEY (`id_tecnico`) REFERENCES `usuarios` (`id_usuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -227,16 +180,18 @@ DROP TABLE IF EXISTS `motos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `motos` (
-  `ID_MOTOS` int(11) NOT NULL AUTO_INCREMENT,
-  `ID_CLIENTES` int(11) NOT NULL,
-  `Placa` varchar(20) NOT NULL,
-  `Modelo` varchar(100) NOT NULL,
-  `Marca` varchar(100) NOT NULL,
-  `Recorrido` varchar(100) NOT NULL,
-  PRIMARY KEY (`ID_MOTOS`),
-  KEY `motos_ibfk_1` (`ID_CLIENTES`),
-  CONSTRAINT `motos_ibfk_1` FOREIGN KEY (`ID_CLIENTES`) REFERENCES `clientes` (`ID_CLIENTES`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `id_moto` int(11) NOT NULL AUTO_INCREMENT,
+  `id_cliente` int(11) NOT NULL,
+  `placa` varchar(10) NOT NULL,
+  `marca` varchar(50) NOT NULL,
+  `modelo` varchar(50) NOT NULL,
+  `cilindraje` int(11) DEFAULT NULL,
+  `kilometraje` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id_moto`),
+  UNIQUE KEY `placa` (`placa`),
+  KEY `id_cliente` (`id_cliente`),
+  CONSTRAINT `fk_moto_cliente` FOREIGN KEY (`id_cliente`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -245,7 +200,6 @@ CREATE TABLE `motos` (
 
 LOCK TABLES `motos` WRITE;
 /*!40000 ALTER TABLE `motos` DISABLE KEYS */;
-INSERT INTO `motos` VALUES (1,1,'BGT657','200','DUKE','120000'),(2,2,'BGT657','1290','DUKE','150000'),(3,3,'DFH360','390','DUKE','30000'),(4,4,'DFH360','390','DUKE','30000'),(5,5,'DFG546','390','DUKE','50000'),(6,1,'NUE250','390','DUKE','60000');
 /*!40000 ALTER TABLE `motos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -257,25 +211,24 @@ DROP TABLE IF EXISTS `orden_servicio`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `orden_servicio` (
-  `ID_ORDEN_SERVICIO` int(11) NOT NULL AUTO_INCREMENT,
-  `ID_CLIENTES` int(11) NOT NULL,
-  `ID_ADMINISTRADOR` int(11) NOT NULL,
-  `ID_TECNICOS` int(11) NOT NULL,
-  `ID_MOTOS` int(11) NOT NULL,
-  `Fecha_inicio` datetime NOT NULL,
-  `Fecha_estimada` datetime NOT NULL,
-  `Fecha_fin` datetime DEFAULT NULL,
-  `Estado` varchar(20) NOT NULL,
-  PRIMARY KEY (`ID_ORDEN_SERVICIO`),
-  KEY `os_ibfk_1` (`ID_CLIENTES`),
-  KEY `os_ibfk_2` (`ID_ADMINISTRADOR`),
-  KEY `os_ibfk_3` (`ID_TECNICOS`),
-  KEY `os_ibfk_4` (`ID_MOTOS`),
-  CONSTRAINT `os_ibfk_1` FOREIGN KEY (`ID_CLIENTES`) REFERENCES `clientes` (`ID_CLIENTES`) ON DELETE CASCADE,
-  CONSTRAINT `os_ibfk_2` FOREIGN KEY (`ID_ADMINISTRADOR`) REFERENCES `administradores` (`ID_ADMINISTRADOR`) ON DELETE CASCADE,
-  CONSTRAINT `os_ibfk_3` FOREIGN KEY (`ID_TECNICOS`) REFERENCES `tecnicos` (`ID_TECNICOS`) ON DELETE CASCADE,
-  CONSTRAINT `os_ibfk_4` FOREIGN KEY (`ID_MOTOS`) REFERENCES `motos` (`ID_MOTOS`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `id_orden` int(11) NOT NULL AUTO_INCREMENT,
+  `id_cliente` int(11) NOT NULL,
+  `id_tecnico` int(11) NOT NULL,
+  `id_moto` int(11) NOT NULL,
+  `fecha_ingreso` datetime NOT NULL,
+  `fecha_estimada` datetime DEFAULT NULL,
+  `fecha_salida` datetime DEFAULT NULL,
+  `observaciones` text DEFAULT NULL,
+  `estado` enum('Pendiente','En proceso','Finalizada','Cancelada') DEFAULT NULL,
+  `total` decimal(20,0) DEFAULT NULL,
+  PRIMARY KEY (`id_orden`),
+  KEY `id_cliente` (`id_cliente`),
+  KEY `id_tecnico` (`id_tecnico`),
+  KEY `id_moto` (`id_moto`),
+  CONSTRAINT `fk_orden_moto` FOREIGN KEY (`id_moto`) REFERENCES `motos` (`id_moto`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `orden_servicio_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `usuarios` (`id_usuario`),
+  CONSTRAINT `orden_servicio_ibfk_2` FOREIGN KEY (`id_tecnico`) REFERENCES `usuarios` (`id_usuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -284,7 +237,6 @@ CREATE TABLE `orden_servicio` (
 
 LOCK TABLES `orden_servicio` WRITE;
 /*!40000 ALTER TABLE `orden_servicio` DISABLE KEYS */;
-INSERT INTO `orden_servicio` VALUES (1,1,1,1,1,'2026-06-27 01:43:22','2026-06-28 01:43:22',NULL,'PENDIENTE'),(2,1,1,1,1,'2026-06-27 02:04:19','2026-06-28 02:04:19',NULL,'PENDIENTE'),(3,3,1,1,3,'2026-06-27 03:37:11','2026-06-28 03:37:11',NULL,'PENDIENTE'),(4,3,1,1,3,'2026-06-27 03:59:21','2026-06-28 03:59:21',NULL,'PENDIENTE'),(5,1,1,1,1,'2026-06-27 05:26:38','2026-06-28 05:26:38',NULL,'PENDIENTE'),(6,1,1,1,6,'2026-07-02 01:46:51','2026-07-03 01:46:51',NULL,'PENDIENTE');
 /*!40000 ALTER TABLE `orden_servicio` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -297,14 +249,14 @@ DROP TABLE IF EXISTS `productos`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `productos` (
   `ID_PRODUCTOS` int(11) NOT NULL AUTO_INCREMENT,
-  `Categoria` varchar(100) NOT NULL,
+  `ID_CATEGORIA` int(11) DEFAULT NULL,
   `Marca` varchar(100) NOT NULL,
   `Nombre` varchar(100) NOT NULL,
-  `Garantia` varchar(100) NOT NULL,
   `Precio` decimal(10,2) NOT NULL,
-  `Cantidad` int(11) NOT NULL,
   `Estado` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`ID_PRODUCTOS`)
+  PRIMARY KEY (`ID_PRODUCTOS`),
+  KEY `fk_productos_categoria` (`ID_CATEGORIA`),
+  CONSTRAINT `fk_productos_categoria` FOREIGN KEY (`ID_CATEGORIA`) REFERENCES `categorias` (`ID_CATEGORIA`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -314,8 +266,33 @@ CREATE TABLE `productos` (
 
 LOCK TABLES `productos` WRITE;
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
-INSERT INTO `productos` VALUES (1,'Lubricantes y refrigerantes','Motorex','Aceite','2',120000.00,8,'Disponibles'),(2,'Accesorios','Rombo','Cadena','30',180000.00,5,'Disponibles'),(3,'Accesorios','Minda','Direccionales','10',150000.00,15,'Disponibles'),(4,'Accesorios','DUKE','CHAQUETA ROCKET','20',170000.00,1,'Disponibles');
+INSERT INTO `productos` VALUES (1,1,'Motorex','Aceite',120000.00,'Disponibles'),(2,2,'Rombo','Cadena',180000.00,'Disponibles'),(3,2,'Minda','Direccionales',150000.00,'Disponibles'),(4,2,'DUKE','CHAQUETA ROCKET',170000.00,'Disponibles');
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `roles`
+--
+
+DROP TABLE IF EXISTS `roles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `roles` (
+  `id_rol` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(30) NOT NULL,
+  PRIMARY KEY (`id_rol`),
+  UNIQUE KEY `nombre` (`nombre`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `roles`
+--
+
+LOCK TABLES `roles` WRITE;
+/*!40000 ALTER TABLE `roles` DISABLE KEYS */;
+INSERT INTO `roles` VALUES (1,'Administrador'),(3,'Cliente'),(2,'Tecnico');
+/*!40000 ALTER TABLE `roles` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -327,12 +304,13 @@ DROP TABLE IF EXISTS `servicios`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `servicios` (
   `ID_SERVICIOS` int(11) NOT NULL AUTO_INCREMENT,
+  `ID_CATEGORIA` int(11) DEFAULT NULL,
   `Nombre` varchar(100) NOT NULL,
-  `Categoria` varchar(100) NOT NULL,
-  `Garantia` varchar(100) NOT NULL,
-  `Estado` varchar(20) NOT NULL,
   `Precio` varchar(20) NOT NULL,
-  PRIMARY KEY (`ID_SERVICIOS`)
+  `Estado` varchar(20) NOT NULL,
+  PRIMARY KEY (`ID_SERVICIOS`),
+  KEY `fk_servicios_categoria` (`ID_CATEGORIA`),
+  CONSTRAINT `fk_servicios_categoria` FOREIGN KEY (`ID_CATEGORIA`) REFERENCES `categorias` (`ID_CATEGORIA`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -342,38 +320,72 @@ CREATE TABLE `servicios` (
 
 LOCK TABLES `servicios` WRITE;
 /*!40000 ALTER TABLE `servicios` DISABLE KEYS */;
-INSERT INTO `servicios` VALUES (1,'Mantenimiento preventivo','Mantenimientos','100','No disponible','212000'),(2,'Reparacion por daños','Reparaciones','30','Disponible','200000'),(3,'Instalaciones de accesorios','Instalaciones','14','Disponible','300000'),(4,'Diagnosticos motor','Diagnosticos','10','Disponible','600000');
+INSERT INTO `servicios` VALUES (1,3,'Mantenimiento preventivo','212000','No disponible'),(2,4,'Reparacion por daños','200000','Disponible'),(3,5,'Instalaciones de accesorios','300000','Disponible'),(4,6,'Diagnosticos motor','600000','Disponible');
 /*!40000 ALTER TABLE `servicios` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `tecnicos`
+-- Table structure for table `tipo_documento`
 --
 
-DROP TABLE IF EXISTS `tecnicos`;
+DROP TABLE IF EXISTS `tipo_documento`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tecnicos` (
-  `ID_TECNICOS` int(11) NOT NULL AUTO_INCREMENT,
-  `Nombre` varchar(100) NOT NULL,
-  `usuario` varchar(100) DEFAULT NULL,
-  `contrasena` varchar(255) DEFAULT NULL,
-  `TipoDocumento` varchar(100) NOT NULL,
-  `Correo` varchar(100) NOT NULL,
-  `Telefono` varchar(20) NOT NULL,
-  PRIMARY KEY (`ID_TECNICOS`),
-  UNIQUE KEY `usuario` (`usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE `tipo_documento` (
+  `id_tipo_documento` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(30) NOT NULL,
+  PRIMARY KEY (`id_tipo_documento`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tecnicos`
+-- Dumping data for table `tipo_documento`
 --
 
-LOCK TABLES `tecnicos` WRITE;
-/*!40000 ALTER TABLE `tecnicos` DISABLE KEYS */;
-INSERT INTO `tecnicos` VALUES (1,'Camilo','tec1','$2b$10$cXmPbqyYZqCSdB4d0S2JX.s2xVsBZ6DpkWA4IX.D16eouATQ00iE.','CC','tecnico2@email.com','3001234567'),(2,'Alejo','tec2','$2b$10$VPMotdHtLLA1uJIctzY0OO.VNHYIETk8qaJSCW4FOVxCyqE52VAmG','CC','tecnico2@email.com','300123456'),(3,'TED','tec3','$2b$10$dYKxvMnyw5BAGtw/YECmSOGzvp9bEKo7nJXHgtI25bVlWfXR9EeEu','Pasaporte','Tedxxx@gmail.com','3124567891'),(4,'JET','tec4','$2b$10$ch6OBKOG/r8E4B.0HRvDdeliNRpdpPlZaNPImSIoFElT6RTdfhi6q','Cedula de ciudadania','jetxxx@gmail.com','3174569852');
-/*!40000 ALTER TABLE `tecnicos` ENABLE KEYS */;
+LOCK TABLES `tipo_documento` WRITE;
+/*!40000 ALTER TABLE `tipo_documento` DISABLE KEYS */;
+INSERT INTO `tipo_documento` VALUES (1,'Cédula de ciudadanía'),(2,'Tarjeta de identidad'),(3,'Cédula de extranjería'),(4,'Pasaporte'),(5,'NIT'),(6,'Permiso por Protección Tempora');
+/*!40000 ALTER TABLE `tipo_documento` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `usuarios`
+--
+
+DROP TABLE IF EXISTS `usuarios`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `usuarios` (
+  `id_usuario` int(11) NOT NULL AUTO_INCREMENT,
+  `id_rol` int(11) NOT NULL,
+  `id_tipo_documento` int(11) NOT NULL,
+  `numero_documento` bigint(20) NOT NULL,
+  `nombre` varchar(120) NOT NULL,
+  `ciudad` varchar(100) DEFAULT NULL,
+  `usuario` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `correo` varchar(120) NOT NULL,
+  `telefono` varchar(20) DEFAULT NULL,
+  `estado` enum('Activo','Inactivo') DEFAULT 'Activo',
+  PRIMARY KEY (`id_usuario`),
+  UNIQUE KEY `numero_documento` (`numero_documento`),
+  UNIQUE KEY `usuario` (`usuario`),
+  UNIQUE KEY `correo` (`correo`),
+  KEY `id_rol` (`id_rol`),
+  KEY `id_tipo_documento` (`id_tipo_documento`),
+  CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id_rol`),
+  CONSTRAINT `usuarios_ibfk_2` FOREIGN KEY (`id_tipo_documento`) REFERENCES `tipo_documento` (`id_tipo_documento`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `usuarios`
+--
+
+LOCK TABLES `usuarios` WRITE;
+/*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
+INSERT INTO `usuarios` VALUES (1,1,1,1000000001,'Administrador','Bogotá','Admi1','$2b$10$aUsQDR0lsup9ehaogpT6m.euAj4ui63ENb7sVc3.3znz6yPkhEdla','admi1@example.com','3000000000','Activo'),(2,2,1,1000000002,'Nuevo Tecnico numero uno',NULL,'tec1','$2b$10$LE6PvQhj1C.n7tf6EM2Vheebmh..IMrpAb85XLYvxkVxU9hrFDRIO','Tec1xxx@gmail.com','3110002456','Activo'),(3,3,1,1000000003,'Cliente nuevo uno','Bogota D.C','user','$2b$10$tka91F8m53TuRAymCSDIGuH9T6Q5IZ6vG671EnkcyO0ULV0LjzOzi','Cli1xx@gmail.com','3125587898','Activo');
+/*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -385,4 +397,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-07-01 20:50:54
+-- Dump completed on 2026-07-08 15:38:09
