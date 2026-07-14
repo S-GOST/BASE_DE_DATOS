@@ -13,11 +13,13 @@ select * from informe;
 select * from comprobante;
 select * from historial;
 
+ALTER TABLE usuarios AUTO_INCREMENT = 2;
+
 UPDATE servicios
 SET ID_SERVICIOS = '5'
 WHERE ID_SERVICIOS = 2;
 
-DELETE FROM orden_servicio WHERE id_orden = 1;
+DELETE FROM usuarios WHERE id_usuario = 2;
 
 SET FOREIGN_KEY_CHECKS = 0;
 TRUNCATE TABLE usuarios;
