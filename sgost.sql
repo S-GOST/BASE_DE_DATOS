@@ -98,7 +98,7 @@ CREATE TABLE `detalles_orden_servicio` (
   CONSTRAINT `detalles_orden_servicio_ibfk_2` FOREIGN KEY (`ID_PRODUCTOS`) REFERENCES `productos` (`ID_PRODUCTOS`),
   CONSTRAINT `detalles_orden_servicio_ibfk_3` FOREIGN KEY (`ID_SERVICIOS`) REFERENCES `servicios` (`ID_SERVICIOS`),
   CONSTRAINT `fk_detalle_orden` FOREIGN KEY (`id_orden`) REFERENCES `orden_servicio` (`id_orden`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -107,6 +107,7 @@ CREATE TABLE `detalles_orden_servicio` (
 
 LOCK TABLES `detalles_orden_servicio` WRITE;
 /*!40000 ALTER TABLE `detalles_orden_servicio` DISABLE KEYS */;
+INSERT INTO `detalles_orden_servicio` VALUES (1,1,NULL,6,1,15,212000.00,212000.00),(2,1,1,NULL,1,30,120000.00,120000.00);
 /*!40000 ALTER TABLE `detalles_orden_servicio` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -128,7 +129,7 @@ CREATE TABLE `historial` (
   PRIMARY KEY (`id_historial`),
   KEY `id_usuario` (`id_usuario`),
   CONSTRAINT `historial_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -137,7 +138,7 @@ CREATE TABLE `historial` (
 
 LOCK TABLES `historial` WRITE;
 /*!40000 ALTER TABLE `historial` DISABLE KEYS */;
-INSERT INTO `historial` VALUES (1,1,'usuarios',2,'INSERT','Se creó el técnico Nuevo Tecnico numero uno','2026-07-13 20:38:57'),(2,1,'usuarios',3,'INSERT','Se creó el técnico Nuevo Tecnico numero dos','2026-07-13 20:40:21');
+INSERT INTO `historial` VALUES (1,1,'usuarios',2,'INSERT','Se creó el técnico Tecnico Nª 1','2026-07-22 19:09:57'),(2,1,'usuarios',2,'UPDATE','Se actualizó el técnico Tecnico Nº 1','2026-07-22 19:11:00'),(3,1,'usuarios',3,'INSERT','Se creó el técnico Tecnico Nº2','2026-07-22 19:11:54'),(4,1,'usuarios',6,'INSERT','Se creó el cliente User numero uno','2026-07-22 19:14:39'),(5,1,'motos',1,'INSERT','Se creó una nueva moto (placa: DES456)','2026-07-22 19:14:39'),(6,1,'usuarios',8,'INSERT','Se creó el cliente User numero uno','2026-07-22 19:16:22'),(7,1,'motos',2,'INSERT','Se creó una nueva moto (placa: DES456)','2026-07-22 19:16:22'),(8,1,'usuarios',4,'INSERT','Se creó el cliente Usuario numero 1','2026-07-22 19:18:44'),(9,1,'motos',3,'INSERT','Se creó una nueva moto (placa: QWE444)','2026-07-22 19:18:44'),(10,1,'orden_servicio',1,'INSERT','Se creó la orden de servicio #1','2026-07-22 19:19:34'),(11,3,'orden_servicio',1,'UPDATE','Actualizó el estado de la orden a En proceso','2026-07-22 19:21:08'),(12,3,'informe',1,'INSERT','Redactó un informe para la orden 1','2026-07-22 19:22:26'),(13,3,'orden_servicio',1,'UPDATE','Actualizó el estado de la orden a Finalizada','2026-07-22 19:22:26');
 /*!40000 ALTER TABLE `historial` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -161,7 +162,7 @@ CREATE TABLE `informe` (
   KEY `id_tecnico` (`id_tecnico`),
   CONSTRAINT `fk_informe_orden` FOREIGN KEY (`id_orden`) REFERENCES `orden_servicio` (`id_orden`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `informe_ibfk_2` FOREIGN KEY (`id_tecnico`) REFERENCES `usuarios` (`id_usuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -170,6 +171,7 @@ CREATE TABLE `informe` (
 
 LOCK TABLES `informe` WRITE;
 /*!40000 ALTER TABLE `informe` DISABLE KEYS */;
+INSERT INTO `informe` VALUES (1,1,3,'Se reviso cambio de aceite 60000 kilometros','Se realizo cambio de aceite y filtro ','Proximo cambio de aceite 620000 mil kilometros','2026-07-22 19:22:26');
 /*!40000 ALTER TABLE `informe` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -192,7 +194,7 @@ CREATE TABLE `motos` (
   UNIQUE KEY `placa` (`placa`),
   KEY `id_cliente` (`id_cliente`),
   CONSTRAINT `fk_moto_cliente` FOREIGN KEY (`id_cliente`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -201,6 +203,7 @@ CREATE TABLE `motos` (
 
 LOCK TABLES `motos` WRITE;
 /*!40000 ALTER TABLE `motos` DISABLE KEYS */;
+INSERT INTO `motos` VALUES (3,4,'QWE444','KTM','DUKE 250',250,70000);
 /*!40000 ALTER TABLE `motos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -229,7 +232,7 @@ CREATE TABLE `orden_servicio` (
   CONSTRAINT `fk_orden_moto` FOREIGN KEY (`id_moto`) REFERENCES `motos` (`id_moto`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `orden_servicio_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `usuarios` (`id_usuario`),
   CONSTRAINT `orden_servicio_ibfk_2` FOREIGN KEY (`id_tecnico`) REFERENCES `usuarios` (`id_usuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -238,6 +241,7 @@ CREATE TABLE `orden_servicio` (
 
 LOCK TABLES `orden_servicio` WRITE;
 /*!40000 ALTER TABLE `orden_servicio` DISABLE KEYS */;
+INSERT INTO `orden_servicio` VALUES (1,4,3,3,'2026-07-23 00:19:34','2026-07-23 00:00:00','2026-07-23 00:22:26','Se realizo en tiempo record','Finalizada',332000);
 /*!40000 ALTER TABLE `orden_servicio` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -376,7 +380,7 @@ CREATE TABLE `usuarios` (
   KEY `id_tipo_documento` (`id_tipo_documento`),
   CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id_rol`),
   CONSTRAINT `usuarios_ibfk_2` FOREIGN KEY (`id_tipo_documento`) REFERENCES `tipo_documento` (`id_tipo_documento`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -385,7 +389,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,1,1,1000000001,'Administrador','Bogotá','Admi1','$2b$10$aUsQDR0lsup9ehaogpT6m.euAj4ui63ENb7sVc3.3znz6yPkhEdla','admi1@example.com','3000000000','Activo'),(2,2,1,1010000000,'Nuevo Tecnico numero uno',NULL,'tec1','$2b$10$o.WDqoakUvc8dfl8ED0Uk.TfqGEq/2.fJmnSjvhYtlNq2Zn13KLM2','Tec1xxx@gmail.com','3220001455','Activo'),(3,2,1,1020000000,'Nuevo Tecnico numero dos',NULL,'tec2','$2b$10$Ti/WM68G4Rhgyea2FHvY0.Hs67WfmBnTvFZSqOViERpvfONcjSAKO','Tec2xxx@gmail.com','3110002456','Activo');
+INSERT INTO `usuarios` VALUES (1,1,1,1000000001,'Administrador','Bogotá','Admi1','$2b$10$aUsQDR0lsup9ehaogpT6m.euAj4ui63ENb7sVc3.3znz6yPkhEdla','admi1@example.com','3000000000','Activo'),(2,2,1,5223644588,'Tecnico Nº 1',NULL,'tec1','$2b$10$ofQpbXH8kd6borSO4oRoeONYEsaBknl812hrNrC8xOu0QnRf8d/Hu','TecnicoN1@gmail.com','3004556321','Activo'),(3,2,4,1200365478,'Tecnico Nº2',NULL,'tec2','$2b$10$eMs/mdPE7g.WKUEokuyaDeatR9LNBEYFQ/VSOnhlgAiGgDrlhnYNi','TecnicoN2@gmail.com','3115698788','Activo'),(4,3,1,1225899866,'Usuario numero 1','Bogota D.C','user','$2b$10$vQvy/pYS.19Q48lZzmkniOo6RXyA5lzf/q.WgLcCF1YtjW7blnV76','numerounoxxx@Usuariogmail.com','3165456987','Activo');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -398,4 +402,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-07-13 20:50:22
+-- Dump completed on 2026-07-22 19:24:36
