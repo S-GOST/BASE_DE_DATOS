@@ -29,6 +29,7 @@ CREATE TABLE `categorias` (
   `nombre` varchar(100) NOT NULL,
   `tipo` enum('PRODUCTO','SERVICIO') NOT NULL,
   `descripcion` varchar(255) DEFAULT NULL,
+  `estado` enum('Activo','Inactivo') DEFAULT 'Activo',
   PRIMARY KEY (`ID_CATEGORIA`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -39,7 +40,7 @@ CREATE TABLE `categorias` (
 
 LOCK TABLES `categorias` WRITE;
 /*!40000 ALTER TABLE `categorias` DISABLE KEYS */;
-INSERT INTO `categorias` VALUES (1,'Lubricantes y refrigerantes','PRODUCTO','Productos para mantenimientos del vehiculo'),(2,'Accesorios','PRODUCTO','Accesorios para motocicletas ktm Duke'),(3,'Mantenimientos','SERVICIO','Servicios preventivos'),(4,'Reparaciones','SERVICIO','Servicios correctivos'),(5,'Instalaciones','SERVICIO','Instalación de accesorios'),(6,'Diagnósticos','SERVICIO','Diagnóstico de las motos');
+INSERT INTO `categorias` VALUES (1,'Lubricantes y refrigerantes','PRODUCTO','Productos para mantenimientos del vehiculo','Activo'),(2,'Accesorios','PRODUCTO','Accesorios para motocicletas ktm Duke','Activo'),(3,'Mantenimientos','SERVICIO','Servicios preventivos','Activo'),(4,'Reparaciones','SERVICIO','Servicios correctivos','Activo'),(5,'Instalaciones','SERVICIO','Instalación de accesorios','Activo'),(6,'Diagnósticos','SERVICIO','Diagnóstico de las motos','Activo');
 /*!40000 ALTER TABLE `categorias` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -99,7 +100,7 @@ CREATE TABLE `detalles_orden_servicio` (
   CONSTRAINT `detalles_orden_servicio_ibfk_2` FOREIGN KEY (`ID_PRODUCTOS`) REFERENCES `productos` (`ID_PRODUCTOS`),
   CONSTRAINT `detalles_orden_servicio_ibfk_3` FOREIGN KEY (`ID_SERVICIOS`) REFERENCES `servicios` (`ID_SERVICIOS`),
   CONSTRAINT `fk_detalle_orden` FOREIGN KEY (`id_orden`) REFERENCES `orden_servicio` (`id_orden`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -130,7 +131,7 @@ CREATE TABLE `historial` (
   PRIMARY KEY (`id_historial`),
   KEY `id_usuario` (`id_usuario`),
   CONSTRAINT `historial_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -139,7 +140,7 @@ CREATE TABLE `historial` (
 
 LOCK TABLES `historial` WRITE;
 /*!40000 ALTER TABLE `historial` DISABLE KEYS */;
-INSERT INTO `historial` VALUES (1,1,'usuarios',2,'INSERT','Se creó el técnico Tecnico Nª 1','2026-07-22 19:09:57'),(2,1,'usuarios',2,'UPDATE','Se actualizó el técnico Tecnico Nº 1','2026-07-22 19:11:00'),(3,1,'usuarios',3,'INSERT','Se creó el técnico Tecnico Nº2','2026-07-22 19:11:54'),(4,1,'usuarios',6,'INSERT','Se creó el cliente User numero uno','2026-07-22 19:14:39'),(5,1,'motos',1,'INSERT','Se creó una nueva moto (placa: DES456)','2026-07-22 19:14:39'),(6,1,'usuarios',8,'INSERT','Se creó el cliente User numero uno','2026-07-22 19:16:22'),(7,1,'motos',2,'INSERT','Se creó una nueva moto (placa: DES456)','2026-07-22 19:16:22'),(8,1,'usuarios',4,'INSERT','Se creó el cliente Usuario numero 1','2026-07-22 19:18:44'),(9,1,'motos',3,'INSERT','Se creó una nueva moto (placa: QWE444)','2026-07-22 19:18:44'),(10,1,'orden_servicio',1,'INSERT','Se creó la orden de servicio #1','2026-07-22 19:19:34'),(11,3,'orden_servicio',1,'UPDATE','Actualizó el estado de la orden a En proceso','2026-07-22 19:21:08'),(12,3,'informe',1,'INSERT','Redactó un informe para la orden 1','2026-07-22 19:22:26'),(13,3,'orden_servicio',1,'UPDATE','Actualizó el estado de la orden a Finalizada','2026-07-22 19:22:26'),(14,4,'orden_servicio',2,'INSERT','Se creó la orden de servicio #2','2026-07-24 17:59:29'),(15,1,'usuarios',6,'INSERT','Se creó el administrador Administrador numero dos','2026-07-28 11:51:33'),(16,1,'usuarios',6,'DELETE','Se eliminó el administrador Administrador numero dos','2026-07-28 11:51:43'),(17,1,'informe',0,'','Generó reporte de informes desde 2026-07-22 hasta 2026-07-28','2026-07-28 17:04:48'),(18,1,'informe',0,'','Generó reporte de informes desde 2026-07-22 hasta 2026-07-28','2026-07-28 17:05:39'),(19,1,'comprobante',1,'INSERT','Admin generó comprobante COMP-20260728-0001 para informe #1, orden #1, total: 332000','2026-07-28 17:06:47'),(20,4,'comprobante',1,'UPDATE','El cliente pagó el comprobante COMP-20260728-0001','2026-07-28 17:55:07'),(21,2,'orden_servicio',2,'UPDATE','Cambió estado de Pendiente a En proceso. Obs: N/A','2026-07-28 19:13:36'),(22,2,'informe',2,'INSERT','Redactó un informe para la orden 2','2026-07-28 19:14:42'),(23,2,'orden_servicio',2,'UPDATE','Cambió estado de En proceso a Finalizada. Obs: N/A','2026-07-28 19:14:42'),(24,1,'comprobante',2,'INSERT','Admin generó comprobante COMP-20260729-0002 para informe #2, orden #2, total: 450000','2026-07-28 19:40:54'),(25,4,'comprobante',2,'UPDATE','El cliente pagó el comprobante COMP-20260729-0002','2026-07-28 19:58:57');
+INSERT INTO `historial` VALUES (1,1,'usuarios',2,'INSERT','Se creó el técnico Tecnico Nª 1','2026-07-22 19:09:57'),(2,1,'usuarios',2,'UPDATE','Se actualizó el técnico Tecnico Nº 1','2026-07-22 19:11:00'),(3,1,'usuarios',3,'INSERT','Se creó el técnico Tecnico Nº2','2026-07-22 19:11:54'),(4,1,'usuarios',6,'INSERT','Se creó el cliente User numero uno','2026-07-22 19:14:39'),(5,1,'motos',1,'INSERT','Se creó una nueva moto (placa: DES456)','2026-07-22 19:14:39'),(6,1,'usuarios',8,'INSERT','Se creó el cliente User numero uno','2026-07-22 19:16:22'),(7,1,'motos',2,'INSERT','Se creó una nueva moto (placa: DES456)','2026-07-22 19:16:22'),(8,1,'usuarios',4,'INSERT','Se creó el cliente Usuario numero 1','2026-07-22 19:18:44'),(9,1,'motos',3,'INSERT','Se creó una nueva moto (placa: QWE444)','2026-07-22 19:18:44'),(10,1,'orden_servicio',1,'INSERT','Se creó la orden de servicio #1','2026-07-22 19:19:34'),(11,3,'orden_servicio',1,'UPDATE','Actualizó el estado de la orden a En proceso','2026-07-22 19:21:08'),(12,3,'informe',1,'INSERT','Redactó un informe para la orden 1','2026-07-22 19:22:26'),(13,3,'orden_servicio',1,'UPDATE','Actualizó el estado de la orden a Finalizada','2026-07-22 19:22:26'),(14,4,'orden_servicio',2,'INSERT','Se creó la orden de servicio #2','2026-07-24 17:59:29'),(15,1,'usuarios',6,'INSERT','Se creó el administrador Administrador numero dos','2026-07-28 11:51:33'),(16,1,'usuarios',6,'DELETE','Se eliminó el administrador Administrador numero dos','2026-07-28 11:51:43'),(17,1,'informe',0,'','Generó reporte de informes desde 2026-07-22 hasta 2026-07-28','2026-07-28 17:04:48'),(18,1,'informe',0,'','Generó reporte de informes desde 2026-07-22 hasta 2026-07-28','2026-07-28 17:05:39'),(19,1,'comprobante',1,'INSERT','Admin generó comprobante COMP-20260728-0001 para informe #1, orden #1, total: 332000','2026-07-28 17:06:47'),(20,4,'comprobante',1,'UPDATE','El cliente pagó el comprobante COMP-20260728-0001','2026-07-28 17:55:07'),(21,2,'orden_servicio',2,'UPDATE','Cambió estado de Pendiente a En proceso. Obs: N/A','2026-07-28 19:13:36'),(22,2,'informe',2,'INSERT','Redactó un informe para la orden 2','2026-07-28 19:14:42'),(23,2,'orden_servicio',2,'UPDATE','Cambió estado de En proceso a Finalizada. Obs: N/A','2026-07-28 19:14:42'),(24,1,'comprobante',2,'INSERT','Admin generó comprobante COMP-20260729-0002 para informe #2, orden #2, total: 450000','2026-07-28 19:40:54'),(25,4,'comprobante',2,'UPDATE','El cliente pagó el comprobante COMP-20260729-0002','2026-07-28 19:58:57'),(26,1,'categorias',5,'UPDATE','Se inhabilitó la categoría ID 5','2026-08-11 11:07:19'),(27,1,'categorias',5,'UPDATE','Se habilitó la categoría ID 5','2026-08-11 12:12:08'),(28,1,'categorias',5,'UPDATE','Se inhabilitó la categoría ID 5','2026-08-11 12:12:13'),(29,1,'categorias',5,'UPDATE','Se habilitó la categoría ID 5','2026-08-11 12:12:20'),(30,1,'categorias',6,'UPDATE','Se inhabilitó la categoría ID 6','2026-08-11 12:12:23'),(31,1,'categorias',6,'UPDATE','Se inhabilitó la categoría ID 6','2026-08-11 12:18:40'),(32,1,'servicios',6,'UPDATE','Se actualizó el servicio ID 6','2026-08-11 13:01:42'),(33,1,'productos',4,'DELETE','Se eliminó el producto ID 4','2026-08-11 13:04:08'),(34,1,'servicios',8,'UPDATE','Se actualizó el servicio ID 8','2026-08-11 13:05:38'),(35,1,'servicios',7,'UPDATE','Se actualizó el servicio ID 7','2026-08-11 13:05:46'),(36,1,'categorias',5,'UPDATE','Se inhabilitó la categoría ID 5','2026-08-11 13:06:04'),(37,1,'categorias',4,'UPDATE','Se inhabilitó la categoría ID 4','2026-08-11 13:06:08'),(38,1,'categorias',3,'UPDATE','Se inhabilitó la categoría ID 3','2026-08-11 13:06:13'),(39,1,'categorias',2,'UPDATE','Se inhabilitó la categoría ID 2','2026-08-11 13:06:17'),(40,1,'categorias',1,'UPDATE','Se inhabilitó la categoría ID 1','2026-08-11 13:06:20'),(41,1,'categorias',6,'UPDATE','Se inhabilitó la categoría ID 6','2026-08-11 13:11:31'),(42,1,'servicios',8,'UPDATE','Se habilitó el servicio ID 8','2026-08-11 13:11:42'),(43,1,'categorias',6,'UPDATE','Se inhabilitó la categoría ID 6','2026-08-11 13:12:00'),(44,1,'productos',4,'DELETE','Se eliminó el producto ID 4','2026-08-11 13:12:34'),(45,1,'usuarios',1,'UPDATE','Se actualizó el administrador Administrador','2026-08-11 16:17:05'),(46,1,'usuarios',1000000001,'UPDATE','Se restableció la contraseña mediante correo electrónico','2026-08-11 16:35:58');
 /*!40000 ALTER TABLE `historial` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -233,7 +234,7 @@ CREATE TABLE `orden_servicio` (
   CONSTRAINT `fk_orden_moto` FOREIGN KEY (`id_moto`) REFERENCES `motos` (`id_moto`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `orden_servicio_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `usuarios` (`id_usuario`),
   CONSTRAINT `orden_servicio_ibfk_2` FOREIGN KEY (`id_tecnico`) REFERENCES `usuarios` (`id_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -273,7 +274,7 @@ CREATE TABLE `productos` (
 
 LOCK TABLES `productos` WRITE;
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
-INSERT INTO `productos` VALUES (1,1,'Motorex','Aceite',120000.00,'Disponibles',0),(2,2,'Rombo','Cadena',180000.00,'Disponibles',0),(3,2,'Minda','Direccionales',150000.00,'Disponibles',0),(4,2,'DUKE','CHAQUETA ROCKET',170000.00,'Disponibles',0);
+INSERT INTO `productos` VALUES (1,1,'Motorex','Aceite',120000.00,'Activo',0),(2,2,'Rombo','Cadena',180000.00,'Activo',0),(3,2,'Minda','Direccionales',150000.00,'Activo',0),(4,2,'DUKE','CHAQUETA ROCKET',170000.00,'Inactivo',0);
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -327,7 +328,7 @@ CREATE TABLE `servicios` (
 
 LOCK TABLES `servicios` WRITE;
 /*!40000 ALTER TABLE `servicios` DISABLE KEYS */;
-INSERT INTO `servicios` VALUES (5,4,'Reparacion por daños','200000','Disponible'),(6,3,'Mantenimiento preventivo','212000','No disponible'),(7,5,'Instalaciones de accesorios','300000','Disponible'),(8,6,'Diagnosticos motor','600000','Disponible');
+INSERT INTO `servicios` VALUES (5,4,'Reparacion por daños','200000','Activo'),(6,3,'Mantenimiento preventivo','212000','Activo'),(7,5,'Instalaciones de accesorios','300000','Activo'),(8,6,'Diagnosticos motor','600000','Activo');
 /*!40000 ALTER TABLE `servicios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -374,6 +375,8 @@ CREATE TABLE `usuarios` (
   `correo` varchar(120) NOT NULL,
   `telefono` varchar(20) DEFAULT NULL,
   `estado` enum('Activo','Inactivo') DEFAULT 'Activo',
+  `reset_token` varchar(255) DEFAULT NULL,
+  `reset_token_expires` datetime DEFAULT NULL,
   PRIMARY KEY (`id_usuario`),
   UNIQUE KEY `numero_documento` (`numero_documento`),
   UNIQUE KEY `usuario` (`usuario`),
@@ -391,7 +394,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,1,1,1000000001,'Administrador','Bogotá','Admi1','$2b$10$aUsQDR0lsup9ehaogpT6m.euAj4ui63ENb7sVc3.3znz6yPkhEdla','admi1@example.com','3000000000','Activo'),(2,2,1,5223644588,'Tecnico Nº 1',NULL,'tec1','$2b$10$ofQpbXH8kd6borSO4oRoeONYEsaBknl812hrNrC8xOu0QnRf8d/Hu','TecnicoN1@gmail.com','3004556321','Activo'),(3,2,4,1200365478,'Tecnico Nº2',NULL,'tec2','$2b$10$eMs/mdPE7g.WKUEokuyaDeatR9LNBEYFQ/VSOnhlgAiGgDrlhnYNi','TecnicoN2@gmail.com','3115698788','Activo'),(4,3,1,1225899866,'Usuario numero 1','Bogota D.C','user','$2b$10$vQvy/pYS.19Q48lZzmkniOo6RXyA5lzf/q.WgLcCF1YtjW7blnV76','numerounoxxx@Usuariogmail.com','3165456987','Activo');
+INSERT INTO `usuarios` VALUES (1,1,1,1000000001,'Administrador','Bogotá','Admi1','$2b$10$K5xy5GpyN5116LR5CI65xObYgybvwKQC6lfnudyKtwepZQINRV4ha','duvan2002pinto@gmail.com','3000000000','Activo',NULL,NULL),(2,2,1,5223644588,'Tecnico Nº 1',NULL,'tec1','$2b$10$ofQpbXH8kd6borSO4oRoeONYEsaBknl812hrNrC8xOu0QnRf8d/Hu','TecnicoN1@gmail.com','3004556321','Activo',NULL,NULL),(3,2,4,1200365478,'Tecnico Nº2',NULL,'tec2','$2b$10$eMs/mdPE7g.WKUEokuyaDeatR9LNBEYFQ/VSOnhlgAiGgDrlhnYNi','TecnicoN2@gmail.com','3115698788','Activo',NULL,NULL),(4,3,1,1225899866,'Usuario numero 1','Bogota D.C','user','$2b$10$vQvy/pYS.19Q48lZzmkniOo6RXyA5lzf/q.WgLcCF1YtjW7blnV76','numerounoxxx@Usuariogmail.com','3165456987','Activo',NULL,NULL);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -404,4 +407,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-07-28 20:06:01
+-- Dump completed on 2026-08-11 17:50:25
