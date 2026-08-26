@@ -31,7 +31,7 @@ CREATE TABLE `categorias` (
   `descripcion` varchar(255) DEFAULT NULL,
   `estado` enum('Activo','Inactivo') DEFAULT 'Activo',
   PRIMARY KEY (`ID_CATEGORIA`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `categorias` (
 
 LOCK TABLES `categorias` WRITE;
 /*!40000 ALTER TABLE `categorias` DISABLE KEYS */;
-INSERT INTO `categorias` VALUES (1,'Lubricantes y refrigerantes','PRODUCTO','Productos para mantenimientos del vehiculo','Activo'),(2,'Accesorios','PRODUCTO','Accesorios para motocicletas ktm Duke','Activo'),(3,'Mantenimientos','SERVICIO','Servicios preventivos','Activo'),(4,'Reparaciones','SERVICIO','Servicios correctivos','Activo'),(5,'Instalaciones','SERVICIO','Instalación de accesorios','Activo'),(6,'Diagnósticos','SERVICIO','Diagnóstico de las motos','Activo');
+INSERT INTO `categorias` VALUES (1,'Aceites y Lubricantes','PRODUCTO','Aceites de motor, lubricantes y líquidos','Activo'),(2,'Filtros','PRODUCTO','Filtros de aire, aceite y combustible','Activo'),(3,'Frenos','PRODUCTO','Pastillas, discos y zapatas de freno','Activo'),(4,'Llantas','PRODUCTO','Llantas y neumáticos para motos','Activo'),(5,'Eléctricos','PRODUCTO','Baterías, bombillos, fusibles','Activo'),(6,'Transmisión','PRODUCTO','Cadenas, piñones, kit de arrastre','Activo'),(7,'Accesorios','PRODUCTO','Chaquetas, cascos, guantes y accesorios','Activo'),(8,'Mantenimiento Preventivo','SERVICIO','Revisiones periódicas y mantenimiento general','Activo'),(9,'Reparación de Motor','SERVICIO','Diagnóstico y reparación de motores','Activo'),(10,'Sistema Eléctrico','SERVICIO','Diagnóstico y reparación del sistema eléctrico','Activo'),(11,'Suspensión','SERVICIO','Reparación y ajuste de suspensión','Activo');
 /*!40000 ALTER TABLE `categorias` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -64,7 +64,7 @@ CREATE TABLE `comprobante` (
   UNIQUE KEY `numero_comprobante` (`numero_comprobante`),
   KEY `id_orden` (`id_orden`),
   CONSTRAINT `fk_comprobante_orden` FOREIGN KEY (`id_orden`) REFERENCES `orden_servicio` (`id_orden`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -73,7 +73,6 @@ CREATE TABLE `comprobante` (
 
 LOCK TABLES `comprobante` WRITE;
 /*!40000 ALTER TABLE `comprobante` DISABLE KEYS */;
-INSERT INTO `comprobante` VALUES (3,11,'COMP-20260820-0001','2026-08-19 21:08:17',332000.00,332000.00,'Efectivo','Pagado');
 /*!40000 ALTER TABLE `comprobante` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -100,7 +99,7 @@ CREATE TABLE `detalles_orden_servicio` (
   CONSTRAINT `detalles_orden_servicio_ibfk_2` FOREIGN KEY (`ID_PRODUCTOS`) REFERENCES `productos` (`ID_PRODUCTOS`),
   CONSTRAINT `detalles_orden_servicio_ibfk_3` FOREIGN KEY (`ID_SERVICIOS`) REFERENCES `servicios` (`ID_SERVICIOS`),
   CONSTRAINT `fk_detalle_orden` FOREIGN KEY (`id_orden`) REFERENCES `orden_servicio` (`id_orden`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -109,7 +108,6 @@ CREATE TABLE `detalles_orden_servicio` (
 
 LOCK TABLES `detalles_orden_servicio` WRITE;
 /*!40000 ALTER TABLE `detalles_orden_servicio` DISABLE KEYS */;
-INSERT INTO `detalles_orden_servicio` VALUES (13,11,NULL,6,1,10,212000.00,212000.00),(14,11,1,NULL,1,10,120000.00,120000.00);
 /*!40000 ALTER TABLE `detalles_orden_servicio` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -127,11 +125,13 @@ CREATE TABLE `historial` (
   `id_registro` int(11) NOT NULL,
   `accion` enum('INSERT','UPDATE','DELETE','LOGIN','LOGOUT') NOT NULL,
   `descripcion` text DEFAULT NULL,
+  `datos_antes` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`datos_antes`)),
+  `datos_despues` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`datos_despues`)),
   `fecha` datetime DEFAULT current_timestamp(),
   PRIMARY KEY (`id_historial`),
   KEY `id_usuario` (`id_usuario`),
   CONSTRAINT `historial_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -140,7 +140,7 @@ CREATE TABLE `historial` (
 
 LOCK TABLES `historial` WRITE;
 /*!40000 ALTER TABLE `historial` DISABLE KEYS */;
-INSERT INTO `historial` VALUES (59,1,'usuarios',2,'INSERT','Se creó el cliente User numero uno','2026-08-19 20:20:17'),(60,2,'motos',10,'INSERT','Se creó una nueva moto (placa: QWE444)','2026-08-19 20:20:18'),(61,2,'orden_servicio',11,'INSERT','Se creó la orden de servicio #11','2026-08-19 20:47:28'),(62,1,'usuarios',3,'INSERT','Se creó el técnico Tecnico Nº1','2026-08-19 21:01:40'),(63,3,'orden_servicio',11,'UPDATE','Cambió estado de Pendiente a En proceso. Obs: N/A','2026-08-19 21:06:41'),(64,3,'informe',3,'INSERT','Redactó un informe para la orden 11','2026-08-19 21:07:33'),(65,3,'orden_servicio',11,'UPDATE','Cambió estado de En proceso a Finalizada. Obs: N/A','2026-08-19 21:07:33'),(66,1,'comprobante',3,'INSERT','Admin generó comprobante COMP-20260820-0001 para informe #3, orden #11, total: 332000','2026-08-19 21:08:17'),(67,2,'comprobante',3,'UPDATE','El cliente pagó el comprobante COMP-20260820-0001','2026-08-19 21:09:08');
+INSERT INTO `historial` VALUES (1,1,'usuarios',1,'UPDATE','Se actualizó el administrador SUPER ADMIN',NULL,NULL,'2026-08-25 19:32:45'),(2,1,'usuarios',3,'UPDATE','Se actualizó el técnico Tecnico Nº1',NULL,NULL,'2026-08-25 19:33:01'),(3,3,'productos',0,'','Generó reporte de inventario',NULL,NULL,'2026-08-25 19:58:55'),(4,3,'productos',0,'','Generó reporte de inventario',NULL,NULL,'2026-08-25 19:59:01'),(5,1,'usuarios',6,'INSERT','Se creó el técnico Tecnico Nº2',NULL,NULL,'2026-08-25 20:34:21'),(6,1,'categorias',0,'INSERT','Se creó la categoría Sistema de frenos',NULL,NULL,'2026-08-25 21:11:10'),(7,1,'servicios',0,'INSERT','Se creó el servicio N/A',NULL,NULL,'2026-08-25 21:20:50');
 /*!40000 ALTER TABLE `historial` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -164,7 +164,7 @@ CREATE TABLE `informe` (
   KEY `id_tecnico` (`id_tecnico`),
   CONSTRAINT `fk_informe_orden` FOREIGN KEY (`id_orden`) REFERENCES `orden_servicio` (`id_orden`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `informe_ibfk_2` FOREIGN KEY (`id_tecnico`) REFERENCES `usuarios` (`id_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -173,7 +173,6 @@ CREATE TABLE `informe` (
 
 LOCK TABLES `informe` WRITE;
 /*!40000 ALTER TABLE `informe` DISABLE KEYS */;
-INSERT INTO `informe` VALUES (3,11,3,'Se reviso motor para cambo de aceite','Se realizo cambio de aceite de 30000 mil kilometros','Proximo cambio de aceite 320000','2026-08-19 21:07:33');
 /*!40000 ALTER TABLE `informe` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -196,7 +195,7 @@ CREATE TABLE `motos` (
   UNIQUE KEY `placa` (`placa`),
   KEY `id_cliente` (`id_cliente`),
   CONSTRAINT `fk_moto_cliente` FOREIGN KEY (`id_cliente`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -205,7 +204,6 @@ CREATE TABLE `motos` (
 
 LOCK TABLES `motos` WRITE;
 /*!40000 ALTER TABLE `motos` DISABLE KEYS */;
-INSERT INTO `motos` VALUES (10,2,'QWE444','KTM','2020',250,70000);
 /*!40000 ALTER TABLE `motos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -227,6 +225,7 @@ CREATE TABLE `orden_servicio` (
   `observaciones` text DEFAULT NULL,
   `estado` enum('Pendiente','En proceso','Finalizada','Cancelada') DEFAULT NULL,
   `total` decimal(20,0) DEFAULT NULL,
+  `metodo_pago` varchar(50) DEFAULT 'efectivo',
   PRIMARY KEY (`id_orden`),
   KEY `id_cliente` (`id_cliente`),
   KEY `id_tecnico` (`id_tecnico`),
@@ -234,7 +233,7 @@ CREATE TABLE `orden_servicio` (
   CONSTRAINT `fk_orden_moto` FOREIGN KEY (`id_moto`) REFERENCES `motos` (`id_moto`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `orden_servicio_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `usuarios` (`id_usuario`),
   CONSTRAINT `orden_servicio_ibfk_2` FOREIGN KEY (`id_tecnico`) REFERENCES `usuarios` (`id_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -243,7 +242,6 @@ CREATE TABLE `orden_servicio` (
 
 LOCK TABLES `orden_servicio` WRITE;
 /*!40000 ALTER TABLE `orden_servicio` DISABLE KEYS */;
-INSERT INTO `orden_servicio` VALUES (11,2,3,10,'2026-08-20 01:47:28','2026-08-20 00:00:00','2026-08-20 02:07:33','','Finalizada',332000);
 /*!40000 ALTER TABLE `orden_servicio` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -259,9 +257,11 @@ CREATE TABLE `productos` (
   `ID_CATEGORIA` int(11) DEFAULT NULL,
   `Marca` varchar(100) NOT NULL,
   `Nombre` varchar(100) NOT NULL,
-  `Precio` decimal(10,2) NOT NULL,
+  `precio_costo` decimal(12,2) DEFAULT 0.00,
+  `precio_venta` decimal(12,2) DEFAULT 0.00,
   `Estado` varchar(20) DEFAULT NULL,
   `stock` int(11) NOT NULL DEFAULT 0,
+  `stock_minimo` int(11) DEFAULT 5,
   PRIMARY KEY (`ID_PRODUCTOS`),
   KEY `fk_productos_categoria` (`ID_CATEGORIA`),
   CONSTRAINT `fk_productos_categoria` FOREIGN KEY (`ID_CATEGORIA`) REFERENCES `categorias` (`ID_CATEGORIA`)
@@ -274,7 +274,7 @@ CREATE TABLE `productos` (
 
 LOCK TABLES `productos` WRITE;
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
-INSERT INTO `productos` VALUES (1,1,'Motorex','Aceite',120000.00,'Activo',99),(2,2,'Rombo','Cadena',180000.00,'Activo',100),(3,2,'Minda','Direccionales',150000.00,'Activo',100),(4,2,'DUKE','CHAQUETA ROCKET',170000.00,'Inactivo',100);
+INSERT INTO `productos` VALUES (1,1,'Motul','Aceite',80000.00,120000.00,'Activo',10,5),(2,6,'DID','Cadena',120000.00,180000.00,'Activo',8,3),(3,5,'Osram','Direccionales',100000.00,150000.00,'Activo',15,5);
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -319,7 +319,7 @@ CREATE TABLE `servicios` (
   PRIMARY KEY (`ID_SERVICIOS`),
   KEY `fk_servicios_categoria` (`ID_CATEGORIA`),
   CONSTRAINT `fk_servicios_categoria` FOREIGN KEY (`ID_CATEGORIA`) REFERENCES `categorias` (`ID_CATEGORIA`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -328,7 +328,7 @@ CREATE TABLE `servicios` (
 
 LOCK TABLES `servicios` WRITE;
 /*!40000 ALTER TABLE `servicios` DISABLE KEYS */;
-INSERT INTO `servicios` VALUES (5,4,'Reparacion por daños','200000','Activo'),(6,3,'Mantenimiento preventivo','212000','Activo'),(7,5,'Instalaciones de accesorios','300000','Activo'),(8,6,'Diagnosticos motor','600000','Activo');
+INSERT INTO `servicios` VALUES (1,8,'Cambio de aceite','30000','Activo'),(2,8,'Revisión general','50000','Activo'),(3,9,'Reparación de motor','200000','Activo'),(4,10,'Revisión eléctrica','80000','Activo'),(5,11,'Ajuste de suspensión','90000','Activo');
 /*!40000 ALTER TABLE `servicios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -394,7 +394,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,1,1,1000000001,'SUPER ADMIN','Bogotá','Admi1','$2b$10$K5xy5GpyN5116LR5CI65xObYgybvwKQC6lfnudyKtwepZQINRV4ha','duvan2002pinto@gmail.com','3000000000','Activo',NULL,NULL),(2,3,1,101255855,'User numero uno','Bogota D.C','User','$2b$10$QYfLl9dtSZlENCC/wKWcNe8mksKxPaqBzM/w4wJEJbvJGR7bXXddq','userxxx@gmail.com','3225556999','Activo',NULL,NULL),(3,2,1,1200365478,'Tecnico Nº1',NULL,'Tec','$2b$10$tEAfHF2BrpkAaDVh6fafvutwzqkzOJe1PxNjftOC6BaiLRE5YtWMW','tecnicon1@gmail.com','3115698788','Activo',NULL,NULL);
+INSERT INTO `usuarios` VALUES (1,1,1,1000000001,'SUPER ADMIN','Bogotá','Admi1','$2b$10$V2sT800p7FtBFqDk5aZkMuOW/TMOwi.sbxyi/ZNnHU/GI4qwcGm..','duvan2002pinto@gmail.com','3002545695','Activo',NULL,NULL),(2,3,1,101255855,'User numero uno','Bogota D.C','User','$2b$10$QYfLl9dtSZlENCC/wKWcNe8mksKxPaqBzM/w4wJEJbvJGR7bXXddq','userxxx@gmail.com','3225556999','Activo',NULL,NULL),(3,2,3,1200365478,'Tecnico Nº1',NULL,'Tec','$2b$10$tEAfHF2BrpkAaDVh6fafvutwzqkzOJe1PxNjftOC6BaiLRE5YtWMW','tecnicon1@gmail.com','3115698788','Activo',NULL,NULL);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -407,4 +407,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-08-19 21:12:17
+-- Dump completed on 2026-08-25 22:10:42
