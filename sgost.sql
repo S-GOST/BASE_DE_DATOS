@@ -131,7 +131,7 @@ CREATE TABLE `historial` (
   PRIMARY KEY (`id_historial`),
   KEY `id_usuario` (`id_usuario`),
   CONSTRAINT `historial_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -140,6 +140,7 @@ CREATE TABLE `historial` (
 
 LOCK TABLES `historial` WRITE;
 /*!40000 ALTER TABLE `historial` DISABLE KEYS */;
+INSERT INTO `historial` VALUES (1,1,'usuarios',1,'LOGOUT','Cierre de sesi�n de: SUPER ADMIN',NULL,NULL,'2026-08-28 17:31:09'),(2,1,'usuarios',1,'LOGIN','Inicio de sesi�n exitoso para usuario: admi1',NULL,NULL,'2026-08-29 10:07:48'),(3,1,'usuarios',1,'LOGOUT','Cierre de sesi�n de: SUPER ADMIN',NULL,NULL,'2026-08-29 10:08:31'),(4,1,'usuarios',3,'INSERT','Se creó el cliente Cliente nuevo uno',NULL,NULL,'2026-08-29 10:09:45'),(5,1,'usuarios',1,'LOGIN','Inicio de sesi�n exitoso para usuario: admi1',NULL,NULL,'2026-08-29 10:10:08'),(6,1,'usuarios',3,'UPDATE','Se rechazar el cliente Cliente nuevo uno',NULL,NULL,'2026-08-29 10:10:23'),(7,1,'usuarios',1,'LOGOUT','Cierre de sesi�n de: SUPER ADMIN',NULL,NULL,'2026-08-29 11:27:12');
 /*!40000 ALTER TABLE `historial` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -273,7 +274,7 @@ CREATE TABLE `productos` (
 
 LOCK TABLES `productos` WRITE;
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
-INSERT INTO `productos` VALUES (1,1,'Motul','Aceite',80000.00,120000.00,'Activo',9,5),(2,6,'DID','Cadena',120000.00,180000.00,'Activo',8,3),(3,5,'Osram','Direccionales',100000.00,150000.00,'Activo',15,5),(4,7,'Rockect','CHAQUETA ROCKET',400000.00,500000.00,'Disponibles',10,5),(5,5,'KTM','Led faro moto',120000.00,200000.00,'Próximamente',20,5),(6,6,'KTM','Monoshop',300000.00,450000.00,'Disponibles',5,1),(7,7,'KTM','Casco',1200000.00,2000000.00,'Disponibles',3,1);
+INSERT INTO `productos` VALUES (1,NULL,'Motul','Aceite',80000.00,120000.00,'Activo',9,5),(2,6,'DID','Cadena',120000.00,180000.00,'Activo',8,3),(3,5,'Osram','Direccionales',100000.00,150000.00,'Activo',15,5),(4,7,'Rockect','CHAQUETA ROCKET',400000.00,500000.00,'Disponibles',10,5),(5,5,'KTM','Led faro moto',120000.00,200000.00,'Próximamente',20,5),(6,6,'KTM','Monoshop',300000.00,450000.00,'Disponibles',5,1),(7,7,'KTM','Casco',1200000.00,2000000.00,'Disponibles',3,1);
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -384,7 +385,7 @@ CREATE TABLE `usuarios` (
   KEY `id_tipo_documento` (`id_tipo_documento`),
   CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id_rol`),
   CONSTRAINT `usuarios_ibfk_2` FOREIGN KEY (`id_tipo_documento`) REFERENCES `tipo_documento` (`id_tipo_documento`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -393,7 +394,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,1,1,1000000001,'SUPER ADMIN','Bogotá','Admi1','$2b$10$V2sT800p7FtBFqDk5aZkMuOW/TMOwi.sbxyi/ZNnHU/GI4qwcGm..','duvan2002pinto@gmail.com','3002545695','Activo',NULL,NULL),(2,2,1,1200365693,'Tecnico N uno',NULL,'Tec1','$2b$10$1A.t/1FkxgJ5puOblCyOeeosf2rI8xGbU9mUtEvX5Y1MQCotTj1sy','tecnicon1@gmail.com','3112547896','Activo',NULL,NULL);
+INSERT INTO `usuarios` VALUES (1,1,1,1000000001,'SUPER ADMIN','Bogotá','Admi1','$2b$10$V2sT800p7FtBFqDk5aZkMuOW/TMOwi.sbxyi/ZNnHU/GI4qwcGm..','duvan2002pinto@gmail.com','3002545695','Activo',NULL,NULL),(2,2,1,1200365693,'Tecnico N uno',NULL,'Tec1','$2b$10$1A.t/1FkxgJ5puOblCyOeeosf2rI8xGbU9mUtEvX5Y1MQCotTj1sy','tecnicon1@gmail.com','3112547896','Activo',NULL,NULL),(3,3,1,1000000002,'Cliente nuevo uno','Bogota D.C','Cli1','$2b$10$EKZANyJZKyu.mz2WczWAR.aYN/3ow7VzA.WFWdEa9DvQ5CBGQ5So.','mandopese@gmail.com','3110023698','Activo',NULL,NULL);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -406,4 +407,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-08-28 17:29:42
+-- Dump completed on 2026-09-03 16:43:33

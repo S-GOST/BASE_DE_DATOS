@@ -13,7 +13,7 @@ select * from informe;
 select * from comprobante;
 select * from historial;
 ALTER TABLE usuarios AUTO_INCREMENT = 2;
-ALTER TABLE historial AUTO_INCREMENT = 1;
+ALTER TABLE historial AUTO_INCREMENT = 7;
 DELETE FROM motos WHERE id_moto = 3;
 DELETE FROM categorias WHERE ID_CATEGORIA = 11;
 DELETE FROM productos WHERE ID_PRODUCTOS = 4;
